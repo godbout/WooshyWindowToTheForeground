@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		91E337CC2883436B00FC48C5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E337CB2883436B00FC48C5 /* main.swift */; };
+		91E337D4288344EC00FC48C5 /* AlfredWorkflowScriptFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 91E337D3288344EC00FC48C5 /* AlfredWorkflowScriptFilter */; };
+		91E337D82883465400FC48C5 /* Entrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E337D72883465400FC48C5 /* Entrance.swift */; };
+		91E337DA2883471100FC48C5 /* Workflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E337D92883471100FC48C5 /* Workflow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,8 @@
 /* Begin PBXFileReference section */
 		91E337C82883436B00FC48C5 /* WooshyWindowToTheForeground */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WooshyWindowToTheForeground; sourceTree = BUILT_PRODUCTS_DIR; };
 		91E337CB2883436B00FC48C5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		91E337D72883465400FC48C5 /* Entrance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrance.swift; sourceTree = "<group>"; };
+		91E337D92883471100FC48C5 /* Workflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workflow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91E337D4288344EC00FC48C5 /* AlfredWorkflowScriptFilter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +64,26 @@
 			isa = PBXGroup;
 			children = (
 				91E337CB2883436B00FC48C5 /* main.swift */,
+				91E337D52883464000FC48C5 /* Core */,
 			);
 			path = WooshyWindowToTheForeground;
+			sourceTree = "<group>";
+		};
+		91E337D52883464000FC48C5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				91E337D62883464D00FC48C5 /* Menus */,
+				91E337D92883471100FC48C5 /* Workflow.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		91E337D62883464D00FC48C5 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				91E337D72883465400FC48C5 /* Entrance.swift */,
+			);
+			path = Menus;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +102,9 @@
 			dependencies = (
 			);
 			name = WooshyWindowToTheForeground;
+			packageProductDependencies = (
+				91E337D3288344EC00FC48C5 /* AlfredWorkflowScriptFilter */,
+			);
 			productName = WooshyWindowToTheForeground;
 			productReference = 91E337C82883436B00FC48C5 /* WooshyWindowToTheForeground */;
 			productType = "com.apple.product-type.tool";
@@ -106,6 +133,9 @@
 				Base,
 			);
 			mainGroup = 91E337BF2883436B00FC48C5;
+			packageReferences = (
+				91E337D2288344EC00FC48C5 /* XCRemoteSwiftPackageReference "AlfredWorkflowScriptFilter" */,
+			);
 			productRefGroup = 91E337C92883436B00FC48C5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -120,7 +150,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91E337DA2883471100FC48C5 /* Workflow.swift in Sources */,
 				91E337CC2883436B00FC48C5 /* main.swift in Sources */,
+				91E337D82883465400FC48C5 /* Entrance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +316,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		91E337D2288344EC00FC48C5 /* XCRemoteSwiftPackageReference "AlfredWorkflowScriptFilter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:godbout/AlfredWorkflowScriptFilter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		91E337D3288344EC00FC48C5 /* AlfredWorkflowScriptFilter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E337D2288344EC00FC48C5 /* XCRemoteSwiftPackageReference "AlfredWorkflowScriptFilter" */;
+			productName = AlfredWorkflowScriptFilter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 91E337C02883436B00FC48C5 /* Project object */;
 }
