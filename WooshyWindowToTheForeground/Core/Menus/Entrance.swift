@@ -17,11 +17,15 @@ class Entrance {
     private init() {}
 
     
-    static func scriptFilter() -> String {
-        results()
+    static func userQuery() -> String {
+        CommandLine.arguments[1]
     }
 
-    static func results() -> String {
+    static func scriptFilter() -> String {
+        results(for: userQuery())
+    }
+
+    static func results(for query: String) -> String {
         let visibleWindows = visibleWindows()
         
         for visibleWindow in visibleWindows {
@@ -30,6 +34,8 @@ class Entrance {
                     .icon(Icon(path: visibleWindow.icon, type: .fileicon))
             )
         }
+                
+        ScriptFilter.filterItems(containing: query)
         
         return ScriptFilter.output()
     }
@@ -45,7 +51,7 @@ class Entrance {
             guard let visibleWindowOwnerPID = visibleWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t else { continue }
             guard let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String else { continue }
             guard let visibleWindowID = visibleWindow.value(forKey: "kCGWindowNumber") as? Int else { continue }
-            
+                       
             var icon: String
             if
                 let application = NSRunningApplication(processIdentifier: visibleWindowOwnerPID),
