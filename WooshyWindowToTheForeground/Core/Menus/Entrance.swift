@@ -1,8 +1,4 @@
 import AlfredWorkflowScriptFilter
-// TODO: still needed?
-import CoreGraphics
-// TODO: still needed?
-import Foundation
 import AppKit
 
 
