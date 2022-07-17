@@ -2,56 +2,63 @@ import AlfredWorkflowScriptFilter
 import AppKit
 
 
-struct Window {
-    
-    let icon: String
-    let app: String
-    let title: String
-    
-}
-
-
 class Entrance {
     static let shared = Entrance()
 
     private init() {}
 
     
-    static func userQuery() -> String {
-        CommandLine.arguments[1]
-    }
-
     static func scriptFilter() -> String {
-        results(for: userQuery())
+        results()
     }
 
-    static func results(for query: String) -> String {
-        let visibleWindows = visibleWindows()
-        
-        for visibleWindow in visibleWindows {
+    static func results() -> String {
+        guard let visibleWindows = visibleWindows() else {
             ScriptFilter.add(
-                Item(title: "\(visibleWindow.app) — \(visibleWindow.title)")
-                    .icon(Icon(path: visibleWindow.icon, type: .fileicon))
+                Item(title: "Oops. Can't grab windows. macOS requires you to grant permissions manually.")
+                    .subtitle("Press ↵ to head to the README and learn how to grant those permissions")
+                    .arg("do")
+                    .variable(Variable(name: "action", value: "headToREADME"))
             )
+                        
+            return ScriptFilter.output()
         }
-                
-        ScriptFilter.filterItems(containing: query)
         
+        if visibleWindows.isEmpty {
+            ScriptFilter.add(
+                Item(title: "Desktop is all clean! No window found.")
+            )
+        } else {
+            for visibleWindow in visibleWindows {
+                ScriptFilter.add(
+                    Item(title: visibleWindow.title)
+                        .uid(visibleWindow.appName + visibleWindow.title)
+                        .subtitle(visibleWindow.appName)
+                        .match("\(visibleWindow.appName) \(visibleWindow.title)")
+                        .icon(Icon(path: visibleWindow.appIcon, type: .fileicon))
+                        .arg("do")
+                        .variable(Variable(name: "action", value: "bringWindowToForeground"))
+                        .variable(Variable(name: "appPID", value: String(visibleWindow.appPID)))
+                        .variable(Variable(name: "windowTitle", value: visibleWindow.title))
+                )
+            }
+        }
+       
         return ScriptFilter.output()
     }
         
-    private static func visibleWindows() -> [Window] {
+    private static func visibleWindows() -> [Window]? {
+        guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
+        guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: "kCGWindowLayer == 0 && kCGWindowAlpha != 0")) as NSArray? else { return nil }
+        
         var windows: [Window] = []
-        
-        guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return [] }
-        guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: "kCGWindowLayer == 0 && kCGWindowAlpha != 0")) as NSArray? else { return [] }
-        
+               
         for visibleWindow in visibleWindows {
             guard let visibleWindow = visibleWindow as? NSDictionary else { continue }
             guard let visibleWindowOwnerPID = visibleWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t else { continue }
             guard let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String else { continue }
-            guard let visibleWindowID = visibleWindow.value(forKey: "kCGWindowNumber") as? Int else { continue }
-                       
+            guard let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String else { return nil }
+            
             var icon: String
             if
                 let application = NSRunningApplication(processIdentifier: visibleWindowOwnerPID),
@@ -64,9 +71,10 @@ class Entrance {
             }
             
             let window = Window(
-                icon: icon,
-                app: visibleWindowOwnerName,
-                title: String(visibleWindowID)
+                appPID: visibleWindowOwnerPID,
+                appName: visibleWindowOwnerName,
+                appIcon: icon,
+                title: visibleWindowName
             )
             
             windows.append(window)

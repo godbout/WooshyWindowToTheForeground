@@ -11,6 +11,7 @@
 		91E337D4288344EC00FC48C5 /* AlfredWorkflowScriptFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 91E337D3288344EC00FC48C5 /* AlfredWorkflowScriptFilter */; };
 		91E337D82883465400FC48C5 /* Entrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E337D72883465400FC48C5 /* Entrance.swift */; };
 		91E337DA2883471100FC48C5 /* Workflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E337D92883471100FC48C5 /* Workflow.swift */; };
+		91E337DC2884055700FC48C5 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E337DB2884055700FC48C5 /* Window.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,7 @@
 		91E337CB2883436B00FC48C5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		91E337D72883465400FC48C5 /* Entrance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrance.swift; sourceTree = "<group>"; };
 		91E337D92883471100FC48C5 /* Workflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workflow.swift; sourceTree = "<group>"; };
+		91E337DB2884055700FC48C5 /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				91E337D62883464D00FC48C5 /* Menus */,
 				91E337D92883471100FC48C5 /* Workflow.swift */,
+				91E337DB2884055700FC48C5 /* Window.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				91E337DA2883471100FC48C5 /* Workflow.swift in Sources */,
 				91E337CC2883436B00FC48C5 /* main.swift in Sources */,
 				91E337D82883465400FC48C5 /* Entrance.swift in Sources */,
+				91E337DC2884055700FC48C5 /* Window.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
