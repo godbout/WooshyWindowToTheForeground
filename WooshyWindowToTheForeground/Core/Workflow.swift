@@ -25,8 +25,7 @@ public struct Workflow {
     }
     
     private static func headToREADME() -> Bool {
-        // TODO: add header
-        NSWorkspace.shared.open(URL(string: "https://github.com/godbout/WooshyWindowToTheForeground")!)
+        NSWorkspace.shared.open(URL(string: "https://github.com/godbout/WooshyWindowToTheForeground#permissions")!)
         
         return true
     }
