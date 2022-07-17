@@ -23,6 +23,10 @@ If you use Wooshy, you probably also use Alfred. And it's the perfect tool for t
 macOS requires `Screen Recording` permissions (yes. huh.) to [read windows names](https://github.com/godbout/WooshyWindowToTheForeground/blob/129f1cdf213988d194135e95a9cdb55621840183/WooshyWindowToTheForeground/Core/Menus/Entrance.swift#L60), and the `Accessibility` to manipulate windows.
 You may give those permissions to Alfred itself, or to this Workflow. Up to what makes you more comfortable.
 
+# Roadmap
+
+[Here](https://github.com/godbout/WooshyWindowToTheForeground/issues?q=is%3Aissue+is%3Aopen+label%3Aroadmap).
+
 # But I use Raycast!
 
 Raycast comes with a window switching feature integrated (although it may not find all windows).
