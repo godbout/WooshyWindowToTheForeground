@@ -16,8 +16,4 @@ public struct Workflow {
         false
     }
 
-    public static func notify(resultFrom _: Bool = false) -> String {
-        "huh wtf?"
-    }
-
 }

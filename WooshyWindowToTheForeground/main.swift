@@ -1,5 +1,5 @@
 print(
     Workflow.next() == "do"
-        ? Workflow.notify(resultFrom: Workflow.do())
+        ? Workflow.do()
         : Workflow.menu()
 )
