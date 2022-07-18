@@ -40,26 +40,48 @@ public struct Workflow {
         var axWindows: AnyObject?
         guard AXUIElementCopyAttributeValue(axApplication, kAXWindowsAttribute as CFString, &axWindows) == .success else { return false }
         
+        // first pass with trying to match titles
         for axWindow in (axWindows as! [AXUIElement]) {
-            var values: CFArray?
-            guard AXUIElementCopyMultipleAttributeValues(axWindow, [kAXTitleAttribute, kAXPositionAttribute, kAXSizeAttribute] as CFArray, AXCopyMultipleAttributeOptions(rawValue: 0), &values) == .success else { continue }
-            guard let windowValues = values as NSArray? else { continue }
-                       
-            let title = windowValues[0] as? String
-            var position = CGPoint()
-            AXValueGetValue(windowValues[1] as! AXValue, .cgPoint, &position)
-            var size = CGSize()
-            AXValueGetValue(windowValues[2] as! AXValue, .cgSize, &size)
-            let bounds = NSRect(x: position.x, y: position.y, width: size.width, height: size.height)
+            guard let title = axTitle(of: axWindow) else { continue }
+            guard let bounds = axBounds(of: axWindow) else { continue }
             
-            if windowTitle == title, windowBounds == bounds {
+           if windowTitle == title, windowBounds == bounds {
                 return bringToForeground(window: axWindow, of: pid_t(appPID))
-            } else if windowBounds == bounds {
+            }
+        }
+        
+        // if no match has been found, it may be because the CG and AX are returning different
+        // titles for the same window. happens with Dash, Chrome, Brave etc.
+        // so we try again only with the bounds now
+        for axWindow in (axWindows as! [AXUIElement]) {
+            guard let bounds = axBounds(of: axWindow) else { continue }
+            
+            if windowBounds == bounds {
                 return bringToForeground(window: axWindow, of: pid_t(appPID))
             }
         }
                 
         return false
+    }
+        
+    private static func axTitle(of axWindow: AXUIElement) -> String? {
+        var axTitle: AnyObject?
+        guard AXUIElementCopyAttributeValue(axWindow, kAXTitleAttribute as CFString, &axTitle) == .success else { return nil }
+                
+        return axTitle as? String
+    }
+    
+    private static func axBounds(of axWindow: AXUIElement) -> NSRect? {
+        var values: CFArray?
+        guard AXUIElementCopyMultipleAttributeValues(axWindow, [kAXPositionAttribute, kAXSizeAttribute] as CFArray, AXCopyMultipleAttributeOptions(rawValue: 0), &values) == .success else { return nil }
+        guard let windowValues = values as NSArray? else { return nil }
+        
+        var position = CGPoint()
+        AXValueGetValue(windowValues[0] as! AXValue, .cgPoint, &position)
+        var size = CGSize()
+        AXValueGetValue(windowValues[1] as! AXValue, .cgSize, &size)
+        
+        return NSRect(x: position.x, y: position.y, width: size.width, height: size.height)
     }
     
     private static func bringToForeground(window: AXUIElement, of pid: pid_t) -> Bool {
