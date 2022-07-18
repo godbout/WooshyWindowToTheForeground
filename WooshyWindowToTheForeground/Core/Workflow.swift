@@ -52,7 +52,7 @@ public struct Workflow {
             AXValueGetValue(windowValues[2] as! AXValue, .cgSize, &size)
             let bounds = NSRect(x: position.x, y: position.y, width: size.width, height: size.height)
             
-            if windowTitle.isNotEmpty, windowTitle == title, windowBounds == bounds {
+            if windowTitle == title, windowBounds == bounds {
                 return bringToForeground(window: axWindow, of: pid_t(appPID))
             } else if windowBounds == bounds {
                 return bringToForeground(window: axWindow, of: pid_t(appPID))
