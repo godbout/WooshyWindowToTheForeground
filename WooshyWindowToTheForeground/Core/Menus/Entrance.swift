@@ -27,6 +27,8 @@ class Entrance {
         if visibleWindows.isEmpty {
             ScriptFilter.add(
                 Item(title: "Desktop is all clean! No window found.")
+                    .arg("do")
+                    .valid(false)
             )
         } else {
             for visibleWindow in visibleWindows {
