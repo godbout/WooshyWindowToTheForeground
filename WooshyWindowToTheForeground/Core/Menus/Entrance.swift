@@ -11,7 +11,7 @@ class Entrance {
     static func scriptFilter() -> String {
         results()
     }
-
+    
     static func results() -> String {
         guard let visibleWindows = visibleWindows() else {
             ScriptFilter.add(
@@ -27,23 +27,40 @@ class Entrance {
         if visibleWindows.isEmpty {
             ScriptFilter.add(
                 Item(title: "Desktop is all clean! No window found.")
-                    .arg("do")
                     .valid(false)
             )
         } else {
-            for visibleWindow in visibleWindows {
+            var visibleWindowsExcludingTheFocusedWindow: [Window]
+//            if let axFocusedWindow = axFocusedWindow() {
+//                visibleWindowsExcludingTheFocusedWindow = visibleWindows.filter { cgWindow in
+//                    cgWindow.title != axFocusedWindow.title && cgWindow.bounds != axFocusedWindow.bounds   
+//                }
+//            } else {
+                visibleWindowsExcludingTheFocusedWindow = visibleWindows
+//            }
+            
+            if visibleWindowsExcludingTheFocusedWindow.isEmpty {
                 ScriptFilter.add(
-                    Item(title: visibleWindow.title)
-                        .uid(visibleWindow.appName + visibleWindow.title)
-                        .subtitle(visibleWindow.appName)
-                        .match("\(visibleWindow.appName) \(visibleWindow.title)")
-                        .icon(Icon(path: visibleWindow.appIcon, type: .fileicon))
+                    Item(title: "The only visible window is the one you're already on!")
+                        .subtitle("Press ↵ to go back to it")
                         .arg("do")
-                        .variable(Variable(name: "action", value: "bringWindowToForeground"))
-                        .variable(Variable(name: "appPID", value: String(visibleWindow.appPID)))
-                        .variable(Variable(name: "windowTitle", value: visibleWindow.title))
-                        .variable(Variable(name: "windowBounds", value: NSStringFromRect(visibleWindow.bounds)))
+                        .variable(Variable(name: "action", value: "nothing"))
                 )
+            } else {
+                for window in visibleWindowsExcludingTheFocusedWindow {
+                    ScriptFilter.add(
+                        Item(title: window.title)
+                            .uid((window.appName ?? "") + window.title)
+                            .subtitle(window.appName ?? "")
+                            .match("\(window.appName ?? "") \(window.title)")
+                            .icon(Icon(path: window.appIcon ?? "", type: .fileicon))
+                            .arg("do")
+                            .variable(Variable(name: "action", value: "bringWindowToForeground"))
+                            .variable(Variable(name: "appPID", value: String(window.appPID)))
+                            .variable(Variable(name: "windowTitle", value: window.title))
+                            .variable(Variable(name: "windowBounds", value: NSStringFromRect(window.bounds)))
+                    )
+                }
             }
         }
        
@@ -51,6 +68,12 @@ class Entrance {
     }
         
     private static func visibleWindows() -> [Window]? {
+        guard let cgVisibleWindows = cgVisibleWindows() else { return nil }
+           
+        return cgVisibleWindows
+    }
+    
+    private static func cgVisibleWindows() -> [Window]? {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
         guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: "kCGWindowLayer == 0 && kCGWindowAlpha != 0")) as NSArray? else { return nil }
         
@@ -90,6 +113,33 @@ class Entrance {
         }
         
         return windows
+    }
+    
+    private static func axFocusedWindow() -> Window? {
+        guard let pid = NSWorkspace.shared.frontmostApplication?.processIdentifier else { return nil }
+        let axApplication = AXUIElementCreateApplication(pid)
+        
+        var axWindow: AnyObject?
+        guard AXUIElementCopyAttributeValue(axApplication, kAXFocusedWindowAttribute as CFString, &axWindow) == .success else { return nil }
+               
+        var values: CFArray?
+        guard AXUIElementCopyMultipleAttributeValues(axWindow as! AXUIElement, [kAXTitleAttribute, kAXPositionAttribute, kAXSizeAttribute] as CFArray, AXCopyMultipleAttributeOptions(rawValue: 0), &values) == .success else { return nil }
+        guard let windowValues = values as NSArray? else { return nil }
+                   
+        let title = windowValues[0] as? String ?? ""
+        var position = CGPoint()
+        AXValueGetValue(windowValues[1] as! AXValue, .cgPoint, &position)
+        var size = CGSize()
+        AXValueGetValue(windowValues[2] as! AXValue, .cgSize, &size)
+        let bounds = NSRect(x: position.x, y: position.y, width: size.width, height: size.height)
+        
+        return Window(
+            appPID: pid,
+            appName: "",
+            appIcon: "",
+            title: title,
+            bounds: bounds
+        )
     }
 
 }
