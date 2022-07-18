@@ -42,6 +42,7 @@ class Entrance {
                         .variable(Variable(name: "action", value: "bringWindowToForeground"))
                         .variable(Variable(name: "appPID", value: String(visibleWindow.appPID)))
                         .variable(Variable(name: "windowTitle", value: visibleWindow.title))
+                        .variable(Variable(name: "windowBounds", value: NSStringFromRect(visibleWindow.bounds)))
                 )
             }
         }
@@ -60,7 +61,12 @@ class Entrance {
             guard let visibleWindowOwnerPID = visibleWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t else { continue }
             guard let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String else { continue }
             guard let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String else { return nil }
-            
+            guard let bounds = visibleWindow.value(forKey: "kCGWindowBounds") as? NSDictionary else { return nil }
+            guard let height = bounds.value(forKey: "Height") as? CGFloat else { return nil }
+            guard let width = bounds.value(forKey: "Width") as? CGFloat else { return nil }
+            guard let x = bounds.value(forKey: "X") as? CGFloat else { return nil }
+            guard let y = bounds.value(forKey: "Y") as? CGFloat else { return nil }
+
             var icon: String
             if
                 let application = NSRunningApplication(processIdentifier: visibleWindowOwnerPID),
@@ -76,7 +82,8 @@ class Entrance {
                 appPID: visibleWindowOwnerPID,
                 appName: visibleWindowOwnerName,
                 appIcon: icon,
-                title: visibleWindowName
+                title: visibleWindowName,
+                bounds: NSRect(x: x, y: y, width: width, height: height)
             )
             
             windows.append(window)

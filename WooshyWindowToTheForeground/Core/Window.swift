@@ -7,5 +7,6 @@ struct Window {
     let appName: String
     let appIcon: String
     let title: String
+    let bounds: NSRect
     
 }

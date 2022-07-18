@@ -8,7 +8,7 @@ public struct Workflow {
     public static func next() -> String {
         ProcessInfo.processInfo.environment["next"] ?? "oops"
     }
-
+    
     public static func menu() -> String {
         Entrance.scriptFilter()
     }
@@ -29,10 +29,11 @@ public struct Workflow {
         
         return true
     }
-       
+    
     private static func bringWindowToForeground() -> Bool {
         guard let appPID = Int(ProcessInfo.processInfo.environment["appPID"] ?? "") else { return false }
-        let windowTitle = ProcessInfo.processInfo.environment["windowTitle"]
+        let windowTitle = ProcessInfo.processInfo.environment["windowTitle"] ?? ""
+        let windowBounds = NSRectFromString(ProcessInfo.processInfo.environment["windowBounds"] ?? "")
         
         let axApplication = AXUIElementCreateApplication(pid_t(appPID))
               
@@ -40,20 +41,34 @@ public struct Workflow {
         guard AXUIElementCopyAttributeValue(axApplication, kAXWindowsAttribute as CFString, &axWindows) == .success else { return false }
         
         for axWindow in (axWindows as! [AXUIElement]) {
-            var axTitle: AnyObject?
-            guard AXUIElementCopyAttributeValue(axWindow, kAXTitleAttribute as CFString, &axTitle) == .success else { continue }
-               
-            if windowTitle == axTitle as? String {
-                let app = NSRunningApplication(processIdentifier: pid_t(appPID))
-                app?.activate(options: .activateIgnoringOtherApps)
-                
-                AXUIElementPerformAction(axWindow, kAXRaiseAction as CFString)
-                
-                return true
+            var values: CFArray?
+            guard AXUIElementCopyMultipleAttributeValues(axWindow, [kAXTitleAttribute, kAXPositionAttribute, kAXSizeAttribute] as CFArray, AXCopyMultipleAttributeOptions(rawValue: 0), &values) == .success else { continue }
+            guard let windowValues = values as NSArray? else { continue }
+                       
+            let title = windowValues[0] as? String
+            var position = CGPoint()
+            AXValueGetValue(windowValues[1] as! AXValue, .cgPoint, &position)
+            var size = CGSize()
+            AXValueGetValue(windowValues[2] as! AXValue, .cgSize, &size)
+            let bounds = NSRect(x: position.x, y: position.y, width: size.width, height: size.height)
+            
+            if windowTitle.isNotEmpty, windowTitle == title, windowBounds == bounds {
+                return bringToForeground(window: axWindow, of: pid_t(appPID))
+            } else if windowBounds == bounds {
+                return bringToForeground(window: axWindow, of: pid_t(appPID))
             }
         }
                 
         return false
+    }
+    
+    private static func bringToForeground(window: AXUIElement, of pid: pid_t) -> Bool {
+        let app = NSRunningApplication(processIdentifier: pid)
+        app?.activate(options:.activateIgnoringOtherApps)
+        
+        AXUIElementPerformAction(window, kAXRaiseAction as CFString)
+        
+        return true
     }
 
 }
