@@ -37,3 +37,9 @@ You may give those permissions to Alfred itself, or to this Workflow. Up to what
 # But I use Raycast!
 
 Raycast comes with a window switching feature integrated (although it may not find all windows).
+
+# Alternatives
+
+* [Contexts](https://contexts.co) (paid app)
+* [Swift Window Switcher](https://github.com/mandrigin/AlfredSwitchWindows) (free, open-source Alfred Workflow, windows and tabs)
+* [Window Switcher](https://github.com/alfredapp/window-switcher-workflow/) (free, open-source Alfred Workflow, also hidden windows and maybe more)
