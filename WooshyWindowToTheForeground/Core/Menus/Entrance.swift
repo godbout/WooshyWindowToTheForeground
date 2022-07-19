@@ -43,7 +43,6 @@ class Entrance {
                 for window in visibleWindowsExcludingTheFocusedWindow {
                     ScriptFilter.add(
                         Item(title: window.title)
-                            .uid((window.appName ?? "") + window.title)
                             .subtitle(window.appName ?? "")
                             .match("\(window.appName ?? "") \(window.title)")
                             .icon(Icon(path: window.appIcon ?? "", type: .fileicon))
