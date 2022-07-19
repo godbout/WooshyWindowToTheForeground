@@ -10,9 +10,7 @@
     Switch apps with <a href="https://www.alfredapp.com">Alfred</a>. Switch app windows with <a href="https://github.com/godbout/WooshyWindowToTheForeground/releases/latest">Wooshy: Window to the Foreground!</a>
 </p>
 
-
-
-https://user-images.githubusercontent.com/121373/179395191-1b2b3e05-4ffc-4bac-8224-2ba1101c155b.mp4
+https://user-images.githubusercontent.com/121373/179673312-38913928-a51b-453e-aac8-ef41b21ab497.mp4
 
 ___
 
