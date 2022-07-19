@@ -19,6 +19,15 @@ ___
 Aren't you annoyed when you have your fingers gently caressing your keyboard for hours but then you have one of those popups or windows that you can't reach?
 Alfred can switch apps but not windows within apps, nor windows without apps. Well here you go.
 
+# Features
+
+* FAST
+* brings visible windows to the foreground
+* all visible windows are listed except the already currently focused one
+* Alfred results order follows windows order. first result is frontmost window, last result is backmost window
+* windows are matched by title, position and size so 99.9% accurate
+* FAST
+
 # Why is this an Alfred Workflow and not part of Wooshy?
 
 The goal of [Wooshy](https://wooshy.app) is to take as little screen estate as possible. What you want to see from Wooshy is the list of UI elements it can help you reach, not a big Input with a list of results à la Alfred.
