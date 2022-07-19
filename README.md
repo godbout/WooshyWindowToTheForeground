@@ -9,8 +9,8 @@ ___
 
 # Why
 
-Aren't you annoyed when you have your fingers gently caressing your keyboard for hours but then you have one of those popups or windows that you can't reach with any tool including Alfred.
-Well here you go.
+Aren't you annoyed when you have your fingers gently caressing your keyboard for hours but then you have one of those popups or windows that you can't reach?
+Alfred can switch apps but not windows within apps, or windows without apps. Well here you go.
 
 # Why is this an Alfred Workflow and not part of Wooshy?
 
