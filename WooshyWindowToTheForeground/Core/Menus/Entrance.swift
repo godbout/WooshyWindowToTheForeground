@@ -72,7 +72,14 @@ extension Entrance {
     
     private static func cgVisibleWindows() -> [Window]? {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
-        guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: "kCGWindowLayer == 0 && kCGWindowAlpha != 0")) as NSArray? else { return nil }
+        guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: """
+            (
+                kCGWindowLayer == 0
+                || kCGWindowLayer == 8
+                || kCGWindowLayer == 23
+            )
+            && kCGWindowAlpha > 0
+            """)) as NSArray? else { return nil }
         
         var windows: [Window] = []
                
