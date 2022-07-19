@@ -4,9 +4,9 @@ import AppKit
 
 class Entrance {
     static let shared = Entrance()
-
+    
     private init() {}
-
+    
     
     static func scriptFilter() -> String {
         results()
@@ -20,7 +20,7 @@ class Entrance {
                     .arg("do")
                     .variable(Variable(name: "action", value: "headToREADME"))
             )
-                        
+            
             return ScriptFilter.output()
         }
         
@@ -30,14 +30,7 @@ class Entrance {
                     .valid(false)
             )
         } else {
-            var visibleWindowsExcludingTheFocusedWindow: [Window]
-//            if let axFocusedWindow = axFocusedWindow() {
-//                visibleWindowsExcludingTheFocusedWindow = visibleWindows.filter { cgWindow in
-//                    cgWindow.title != axFocusedWindow.title && cgWindow.bounds != axFocusedWindow.bounds   
-//                }
-//            } else {
-                visibleWindowsExcludingTheFocusedWindow = visibleWindows
-//            }
+            let visibleWindowsExcludingTheFocusedWindow = removeCurrentlyFocusedWindow(from: visibleWindows)
             
             if visibleWindowsExcludingTheFocusedWindow.isEmpty {
                 ScriptFilter.add(
@@ -63,9 +56,14 @@ class Entrance {
                 }
             }
         }
-       
+        
         return ScriptFilter.output()
     }
+    
+}
+
+
+extension Entrance {
         
     private static func visibleWindows() -> [Window]? {
         guard let cgVisibleWindows = cgVisibleWindows() else { return nil }
@@ -115,6 +113,30 @@ class Entrance {
         return windows
     }
     
+    private static func removeCurrentlyFocusedWindow(from visibleWindows: [Window]) -> [Window] {
+        var visibleWindowsExcludingTheFocusedWindow = visibleWindows
+        
+        if let axFocusedWindow = axFocusedWindow() {
+            // first pass
+            visibleWindowsExcludingTheFocusedWindow.removeAll { cgWindow in
+                cgWindow.appPID == axFocusedWindow.appPID
+                && cgWindow.title == axFocusedWindow.title
+                && cgWindow.bounds == axFocusedWindow.bounds
+            }
+            
+            // second pass for same windows that return different titles with CG and AX
+            // in that case, if no window has been found at first pass, we match only with app and bounds, not title
+            if visibleWindows.count == visibleWindowsExcludingTheFocusedWindow.count {
+                visibleWindowsExcludingTheFocusedWindow.removeAll { cgWindow in
+                    cgWindow.appPID == axFocusedWindow.appPID
+                    && cgWindow.bounds == axFocusedWindow.bounds
+                }
+            }
+        }
+               
+        return visibleWindowsExcludingTheFocusedWindow
+    }
+
     private static func axFocusedWindow() -> Window? {
         guard let pid = NSWorkspace.shared.frontmostApplication?.processIdentifier else { return nil }
         let axApplication = AXUIElementCreateApplication(pid)
@@ -141,5 +163,5 @@ class Entrance {
             bounds: bounds
         )
     }
-
+    
 }
