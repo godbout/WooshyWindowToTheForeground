@@ -24,7 +24,7 @@ Alfred can switch apps but not windows within apps, nor windows without apps. We
 * FAST
 * brings visible windows to the foreground
 * all visible windows are listed except the already currently focused one
-* Alfred results order follows windows order. first result is frontmost window, last result is backmost window
+* Alfred results order follows windows order: first result is frontmost window, last result is backmost window
 * windows are matched by title, position and size so 99.9% accurate
 * FAST
 
