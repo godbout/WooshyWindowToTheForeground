@@ -1,7 +1,16 @@
 <h1 align="center">Wooshy: Window to the Foreground!</h1>
+
+<p align="center">
+    <a href="https://apps.apple.com/us/app/macos-big-sur/id1526878132?mt=12" src="https://img.shields.io/badge/macOS-Big%20Sur%2B%2B-red"></a>
+    <a href="https://github.com/godbout/WooshyWindowToTheForeground/releases"><img src="https://img.shields.io/github/release/godbout/WooshyWindowToTheForeground.svg" alt="GitHub Release"></a>
+    <a href="https://github.com/godbout/WooshyWindowToTheForeground/releases"><img src="https://img.shields.io/github/downloads/godbout/WooshyWindowToTheForeground/total.svg" alt="GitHub Downloads"></a>
+</p>
+
 <p align="center">
     Switch apps with <a href="https://www.alfredapp.com">Alfred</a>. Switch app windows with <a href="https://github.com/godbout/WooshyWindowToTheForeground/releases/latest">Wooshy — Window to the Foreground!</a>
 </p>
+
+
 
 https://user-images.githubusercontent.com/121373/179395191-1b2b3e05-4ffc-4bac-8224-2ba1101c155b.mp4
 
