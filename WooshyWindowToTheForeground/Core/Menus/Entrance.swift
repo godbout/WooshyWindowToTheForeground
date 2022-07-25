@@ -11,8 +11,23 @@ class Entrance {
     static func scriptFilter() -> String {
         results()
     }
-    
+        
     static func results() -> String {
+        if let release = Updater.updateAvailable() {
+            ScriptFilter.add(
+                Item(title: "Update available! (\(release.version))")
+                    .subtitle("Press ↵ to update, or ⌘↵ to take a trip to the release page")
+                    .arg("do")
+                    .variable(Variable(name: "AlfredWorkflowUpdater_action", value: "update"))
+                    .mod(
+                        Cmd()
+                            .subtitle("say hello to the release page")
+                            .arg("do")
+                            .variable(Variable(name: "AlfredWorkflowUpdater_action", value: "open"))
+                    )
+            )
+        }
+        
         guard let visibleWindows = visibleWindows() else {
             ScriptFilter.add(
                 Item(title: "Oops. Can't grab windows. macOS requires you to grant permissions manually.")
@@ -63,7 +78,7 @@ class Entrance {
 
 
 extension Entrance {
-        
+    
     private static func visibleWindows() -> [Window]? {
         guard let cgVisibleWindows = cgVisibleWindows() else { return nil }
            
