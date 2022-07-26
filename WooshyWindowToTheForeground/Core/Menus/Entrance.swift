@@ -21,7 +21,7 @@ class Entrance {
                     .variable(Variable(name: "AlfredWorkflowUpdater_action", value: "update"))
                     .mod(
                         Cmd()
-                            .subtitle("Go to the release page with your favorite browser")
+                            .subtitle("Say hello to the release page")
                             .arg("do")
                             .variable(Variable(name: "AlfredWorkflowUpdater_action", value: "open"))
                     )
