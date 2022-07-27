@@ -2,6 +2,17 @@ import AlfredWorkflowScriptFilter
 import AppKit
 
 
+struct Window {
+    
+    let appPID: pid_t
+    let appName: String?
+    let appIcon: String?
+    let title: String
+    let bounds: NSRect
+    
+}
+
+
 class Entrance {
     static let shared = Entrance()
     

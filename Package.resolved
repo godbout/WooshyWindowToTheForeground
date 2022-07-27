@@ -3,7 +3,7 @@
     {
       "identity" : "alfredworkflowscriptfilter",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:godbout/AlfredWorkflowScriptFilter.git",
+      "location" : "https://github.com/godbout/AlfredWorkflowScriptFilter",
       "state" : {
         "revision" : "7560c50295d9b934d5a326df39feb16a7e464e68",
         "version" : "1.0.0"

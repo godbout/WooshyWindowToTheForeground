@@ -1,7 +1,7 @@
 import Foundation
 
 
-struct UpdateInfo: Codable {
+struct ReleaseInfo: Codable {
     
     let version: String
     let file: String
@@ -12,14 +12,14 @@ struct UpdateInfo: Codable {
 
 struct Updater {
     
-    static func updateAvailable() -> UpdateInfo? {
+    static func updateAvailable() -> ReleaseInfo? {
         guard let alfredWorkflowCache = ProcessInfo.processInfo.environment["alfred_workflow_cache"] else { return nil }
         
         let updateFile = URL(fileURLWithPath: "\(alfredWorkflowCache)/update_available.plist")
         guard let updateData = try? Data(contentsOf: updateFile) else { return nil }
         
         let decoder = PropertyListDecoder()
-        guard let updateInfo = try? decoder.decode(UpdateInfo.self, from: updateData) else { return nil } 
+        guard let updateInfo = try? decoder.decode(ReleaseInfo.self, from: updateData) else { return nil } 
         
         return updateInfo
     }
