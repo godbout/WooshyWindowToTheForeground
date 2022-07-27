@@ -2,6 +2,7 @@
 
 <p align="center">
     <a href="https://apps.apple.com/us/app/macos-big-sur/id1526878132?mt=12"><img src="https://img.shields.io/badge/macOS-11.5 Big%20Sur%2B-red"></a>
+    <a href="https://github.com/godbout/WooshyWindowToTheForeground/actions"><img src="https://img.shields.io/github/workflow/status/godbout/WooshyWindowToTheForeground/tests" alt="Build Status"></a>
     <a href="https://github.com/godbout/WooshyWindowToTheForeground/releases"><img src="https://img.shields.io/github/release/godbout/WooshyWindowToTheForeground.svg" alt="GitHub Release"></a>
     <a href="https://github.com/godbout/WooshyWindowToTheForeground/releases"><img src="https://img.shields.io/github/downloads/godbout/WooshyWindowToTheForeground/total.svg" alt="GitHub Downloads"></a>
 </p>
