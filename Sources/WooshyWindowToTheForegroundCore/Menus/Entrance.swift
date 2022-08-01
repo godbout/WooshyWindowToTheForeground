@@ -96,6 +96,12 @@ extension Entrance {
         return cgVisibleWindows
     }
     
+    // kCGWindowLayer:
+    // 0: normal windows
+    // 8: don't remember
+    // 20: Character View when not extended
+    // 28: Character View when extended
+    // 23: don't remember
     private static func cgVisibleWindows() -> [Window]? {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
         guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: """
@@ -104,6 +110,7 @@ extension Entrance {
                 || kCGWindowLayer == 8
                 || kCGWindowLayer == 20
                 || kCGWindowLayer == 23
+                || kCGWindowLayer == 28
             )
             && kCGWindowAlpha > 0
             """)) as NSArray? else { return nil }
