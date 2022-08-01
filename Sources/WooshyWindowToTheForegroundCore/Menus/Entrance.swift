@@ -102,6 +102,7 @@ extension Entrance {
             (
                 kCGWindowLayer == 0
                 || kCGWindowLayer == 8
+                || kCGWindowLayer == 20
                 || kCGWindowLayer == 23
             )
             && kCGWindowAlpha > 0
