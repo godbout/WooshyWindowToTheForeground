@@ -126,7 +126,6 @@ extension Entrance {
                 let visibleWindowLayer = visibleWindow.value(forKey: "kCGWindowLayer") as? Int,
                 let visibleWindowOwnerPID = visibleWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t,
                 let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String,
-                let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String,
                 let bounds = visibleWindow.value(forKey: "kCGWindowBounds") as? NSDictionary,
                 let height = bounds.value(forKey: "Height") as? CGFloat,
                 let width = bounds.value(forKey: "Width") as? CGFloat,
@@ -136,6 +135,7 @@ extension Entrance {
                 continue
             }
             
+            guard let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String else { return nil }
             guard visibleWindowIsNotAMenuBarIcon(layer: visibleWindowLayer, height: height) else { continue }
                 
             var icon: String
