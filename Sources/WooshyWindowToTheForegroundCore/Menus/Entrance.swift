@@ -100,8 +100,10 @@ extension Entrance {
     // 0: normal windows
     // 8: don't remember
     // 20: Character View when not extended
-    // 28: Character View when extended
     // 23: don't remember
+    // 25: stuff from the status bar. was filtered out at first but some windows like the Apple ID 2FA shows up as 25.
+    // so now we grab them, and filter out the ones that have a small height because those ones are probably icons for the status bar.
+    // 28: Character View when extended
     private static func cgVisibleWindows() -> [Window]? {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
         guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: """
@@ -110,6 +112,7 @@ extension Entrance {
                 || kCGWindowLayer == 8
                 || kCGWindowLayer == 20
                 || kCGWindowLayer == 23
+                || kCGWindowLayer == 25
                 || kCGWindowLayer == 28
             )
             && kCGWindowAlpha > 0
@@ -158,6 +161,10 @@ extension Entrance {
         }
         
         return windows
+    }
+        
+    private static func visibleWindowIsNotAMenuBarIcon(layer: Int, height: Double) -> Bool {
+        layer != 25 || height > 25
     }
     
     private static func removeCurrentlyFocusedWindow(from visibleWindows: [Window]) -> [Window] {
