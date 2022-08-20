@@ -37,8 +37,10 @@ If you use Wooshy, you probably also use Alfred. It's the perfect tool for this.
 
 # Permissions
 
-macOS requires `Screen Recording` permissions (yes. huh.) to [read windows names](https://github.com/godbout/WooshyWindowToTheForeground/blob/129f1cdf213988d194135e95a9cdb55621840183/WooshyWindowToTheForeground/Core/Menus/Entrance.swift#L60), and the `Accessibility` to manipulate windows.
-You may give those permissions manually to Alfred itself, or to this Workflow. Up to what makes you more comfortable.
+macOS requires `Screen Recording` permissions (yes. huh?) to [read windows names](https://github.com/godbout/WooshyWindowToTheForeground/blob/129f1cdf213988d194135e95a9cdb55621840183/WooshyWindowToTheForeground/Core/Menus/Entrance.swift#L60), and the `Accessibility` permissions to manipulate windows.
+
+⚠️ Developers can only show the `Screen Recording` permissions dialog once. This is a "feature" from Apple.
+If for whatever reason you've missed it or denied the permissions, you'll have to add Alfred or this Workflow manually in the macOS `Privacy & Security` Settings, or [reset the permissions dialog status manually](https://apple.stackexchange.com/questions/384230/how-do-i-reset-screen-recording-permission-on-macos-catalina).
 
 # Roadmap
 
