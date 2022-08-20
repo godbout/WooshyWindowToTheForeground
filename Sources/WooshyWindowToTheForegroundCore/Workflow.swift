@@ -15,13 +15,23 @@ public struct Workflow {
     
     public static func `do`() -> Bool {
         switch ProcessInfo.processInfo.environment["action"] {
+        case "headToGitHubIssues":
+            return headToGitHubIssues()
         case "headToREADME":
             return headToREADME()
         case "bringWindowToForeground":
             return bringWindowToForeground()
+        case "promptPermissionDialogs":
+            return promptPermissionDialogs()
         default:
             return false
         }
+    }
+    
+    private static func headToGitHubIssues() -> Bool {
+        NSWorkspace.shared.open(URL(string: "https://github.com/godbout/WooshyWindowToTheForeground/issues")!)
+        
+        return true
     }
     
     private static func headToREADME() -> Bool {
@@ -89,6 +99,13 @@ public struct Workflow {
         app?.activate(options:.activateIgnoringOtherApps)
         
         AXUIElementPerformAction(window, kAXRaiseAction as CFString)
+        
+        return true
+    }
+    
+    private static func promptPermissionDialogs() -> Bool {
+        AXIsProcessTrustedWithOptions([kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true] as CFDictionary)
+        CGRequestScreenCaptureAccess()
         
         return true
     }
