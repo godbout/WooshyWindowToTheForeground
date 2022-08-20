@@ -26,10 +26,10 @@ class Entrance {
     static func results() -> String {
         guard let visibleWindows = visibleWindows() else {
             ScriptFilter.add(
-                Item(title: "Oops. Can't grab windows. macOS requires you to grant permissions manually.")
-                    .subtitle("Press ↵ to head to the README and learn how to grant those permissions")
+                Item(title: "🚨️ Oops 🚨️ Something is failing badly. The smart thing to do is to report!")
+                    .subtitle("Press ↵ to fly to the GitHub Issues page")
                     .arg("do")
-                    .variable(Variable(name: "action", value: "headToREADME"))
+                    .variable(Variable(name: "action", value: "headToGitHubIssues"))
             )
                     
             if let release = Updater.updateAvailable() {
@@ -42,7 +42,15 @@ class Entrance {
         if visibleWindows.isEmpty {
             ScriptFilter.add(
                 Item(title: "Desktop is all clean! No window found.")
-                    .valid(false)
+                    .subtitle("Doesn't feel right? Maybe you haven't granted permissions. Press ↵ for the prompts, ⌘↵ for the README")
+                    .arg("do")
+                    .variable(Variable(name: "action", value: "promptPermissionDialogs"))
+                    .mod(
+                        Cmd()
+                            .subtitle("README here I come!")
+                            .arg("do")
+                            .variable(Variable(name: "action", value: "headToREADME"))
+                    )
             )
         } else {
             let visibleWindowsExcludingTheFocusedWindow = removeCurrentlyFocusedWindow(from: visibleWindows)
@@ -132,6 +140,7 @@ extension Entrance {
                 let visibleWindowLayer = visibleWindow.value(forKey: "kCGWindowLayer") as? Int,
                 let visibleWindowOwnerPID = visibleWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t,
                 let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String,
+                let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String,
                 let bounds = visibleWindow.value(forKey: "kCGWindowBounds") as? NSDictionary,
                 let height = bounds.value(forKey: "Height") as? CGFloat,
                 let width = bounds.value(forKey: "Width") as? CGFloat,
@@ -141,7 +150,6 @@ extension Entrance {
                 continue
             }
             
-            guard let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String else { return nil }
             guard visibleWindowIsNotAMenuBarIcon(layer: visibleWindowLayer, height: height) else { continue }
                 
             var icon: String
