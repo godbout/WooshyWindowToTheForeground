@@ -170,7 +170,7 @@ extension Entrance {
     }
         
     private static func visibleWindowIsNotAMenuBarIcon(layer: Int, height: Double) -> Bool {
-        layer != 25 || height > 25
+        layer != 25 || height > 24
     }
     
     private static func removeCurrentlyFocusedWindow(from visibleWindows: [Window]) -> [Window] {
