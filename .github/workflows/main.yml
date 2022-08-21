@@ -22,5 +22,9 @@ jobs:
       uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: '14.0-beta'
+    - name: set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.GHA_PRIVATE_SSHKEY }}
     - name: build, and run tests
       run: xcodebuild -scheme "WooshyWindowToTheForeground" -configuration "Debug" -usePackageSupportBuiltinSCM -derivedDataPath $GITHUB_WORKSPACE -enableCodeCoverage YES clean build test
