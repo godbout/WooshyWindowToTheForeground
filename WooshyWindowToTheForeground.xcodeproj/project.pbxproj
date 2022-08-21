@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91BE418628B29ACE009224B8 /* Workflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7328B287FC0009A6EF /* Workflow.swift */; };
 		91D4FC7828B287FC0009A6EF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7128B287FC0009A6EF /* main.swift */; };
 		91D4FC7928B287FC0009A6EF /* Workflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7328B287FC0009A6EF /* Workflow.swift */; };
 		91D4FC7A28B287FC0009A6EF /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7528B287FC0009A6EF /* Updater.swift */; };
 		91D4FC7B28B287FC0009A6EF /* Entrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7728B287FC0009A6EF /* Entrance.swift */; };
 		91D4FC7E28B2882D0009A6EF /* AlfredWorkflowScriptFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 91D4FC7D28B2882D0009A6EF /* AlfredWorkflowScriptFilter */; };
 		91D4FC9428B288840009A6EF /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC9128B288840009A6EF /* UpdateTests.swift */; };
-		91D4FC9528B288840009A6EF /* WooshyWindowToTheForegroundCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundCoreTests.swift */; };
-		91D4FC9628B288A30009A6EF /* Workflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7328B287FC0009A6EF /* Workflow.swift */; };
+		91D4FC9528B288840009A6EF /* WooshyWindowToTheForegroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundTests.swift */; };
 		91D4FC9728B288B60009A6EF /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7528B287FC0009A6EF /* Updater.swift */; };
 		91D4FC9828B288B80009A6EF /* Entrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7728B287FC0009A6EF /* Entrance.swift */; };
 		91D4FC9B28B288CD0009A6EF /* AlfredWorkflowScriptFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 91D4FC9A28B288CD0009A6EF /* AlfredWorkflowScriptFilter */; };
@@ -40,7 +40,7 @@
 		91D4FC7728B287FC0009A6EF /* Entrance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entrance.swift; sourceTree = "<group>"; };
 		91D4FC8328B2886B0009A6EF /* WooshyWindowToTheForegroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WooshyWindowToTheForegroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D4FC9128B288840009A6EF /* UpdateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTests.swift; sourceTree = "<group>"; };
-		91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundCoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WooshyWindowToTheForegroundCoreTests.swift; sourceTree = "<group>"; };
+		91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WooshyWindowToTheForegroundTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,36 +85,12 @@
 		91D4FC6728B287A90009A6EF /* WooshyWindowToTheForeground */ = {
 			isa = PBXGroup;
 			children = (
-				91D4FC6F28B287FC0009A6EF /* Sources */,
-			);
-			path = WooshyWindowToTheForeground;
-			sourceTree = "<group>";
-		};
-		91D4FC6F28B287FC0009A6EF /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC7028B287FC0009A6EF /* WooshyWindowToTheForeground */,
-				91D4FC7228B287FC0009A6EF /* WooshyWindowToTheForegroundCore */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		91D4FC7028B287FC0009A6EF /* WooshyWindowToTheForeground */ = {
-			isa = PBXGroup;
-			children = (
 				91D4FC7128B287FC0009A6EF /* main.swift */,
+				91D4FC7628B287FC0009A6EF /* Menus */,
+				91D4FC7428B287FC0009A6EF /* Updater */,
+				91D4FC7328B287FC0009A6EF /* Workflow.swift */,
 			);
 			path = WooshyWindowToTheForeground;
-			sourceTree = "<group>";
-		};
-		91D4FC7228B287FC0009A6EF /* WooshyWindowToTheForegroundCore */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC7328B287FC0009A6EF /* Workflow.swift */,
-				91D4FC7428B287FC0009A6EF /* Updater */,
-				91D4FC7628B287FC0009A6EF /* Menus */,
-			);
-			path = WooshyWindowToTheForegroundCore;
 			sourceTree = "<group>";
 		};
 		91D4FC7428B287FC0009A6EF /* Updater */ = {
@@ -136,27 +112,11 @@
 		91D4FC8428B2886B0009A6EF /* WooshyWindowToTheForegroundTests */ = {
 			isa = PBXGroup;
 			children = (
-				91D4FC8A28B288840009A6EF /* Tests */,
+				91D4FC9028B288840009A6EF /* Feature */,
+				91D4FC8C28B288840009A6EF /* Resources */,
+				91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundTests.swift */,
 			);
 			path = WooshyWindowToTheForegroundTests;
-			sourceTree = "<group>";
-		};
-		91D4FC8A28B288840009A6EF /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC8B28B288840009A6EF /* WooshyWindowToTheForegroundCoreTests */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		91D4FC8B28B288840009A6EF /* WooshyWindowToTheForegroundCoreTests */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC8C28B288840009A6EF /* Resources */,
-				91D4FC9028B288840009A6EF /* Feature */,
-				91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundCoreTests.swift */,
-			);
-			path = WooshyWindowToTheForegroundCoreTests;
 			sourceTree = "<group>";
 		};
 		91D4FC8C28B288840009A6EF /* Resources */ = {
@@ -306,11 +266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91D4FC9628B288A30009A6EF /* Workflow.swift in Sources */,
 				91D4FC9828B288B80009A6EF /* Entrance.swift in Sources */,
 				91D4FC9728B288B60009A6EF /* Updater.swift in Sources */,
 				91D4FC9428B288840009A6EF /* UpdateTests.swift in Sources */,
-				91D4FC9528B288840009A6EF /* WooshyWindowToTheForegroundCoreTests.swift in Sources */,
+				91D4FC9528B288840009A6EF /* WooshyWindowToTheForegroundTests.swift in Sources */,
+				91BE418628B29ACE009224B8 /* Workflow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
