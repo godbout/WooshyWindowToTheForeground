@@ -1,5 +1,4 @@
 import XCTest
-@testable import WooshyWindowToTheForegroundCore
 
 
 class WooshyWindowToTheForegroundCoreTests: XCTestCase {
