@@ -10,8 +10,8 @@ on:
 
 jobs:
   swift:
-    name: on Big Sur
-    runs-on: macos-11
+    name: on Monterey
+    runs-on: macos-12
 
     steps:
     - uses: actions/checkout@v2
