@@ -4,6 +4,8 @@ import AppKit
 
 struct Window {
     
+    let number: CGWindowID
+    let title: String
     let appPID: pid_t
     let appName: String?
     let appIcon: String?
@@ -70,10 +72,10 @@ class Entrance {
                             .match("\(window.appName ?? "") \(window.title)")
                             .icon(Icon(path: window.appIcon ?? "", type: .fileicon))
                             .arg("do")
-                            .variable(Variable(name: "action", value: "bringWindowToForeground"))
-                            .variable(Variable(name: "appPID", value: String(window.appPID)))
+                            .variable(Variable(name: "windowNumber", value: String(window.number)))
                             .variable(Variable(name: "windowTitle", value: window.title))
-                            .variable(Variable(name: "windowBounds", value: NSStringFromRect(window.bounds)))
+                            .variable(Variable(name: "appPID", value: String(window.appPID)))
+                            .variable(Variable(name: "action", value: "bringWindowToForeground"))
                     )
                 }
             }
@@ -138,14 +140,12 @@ extension Entrance {
             guard
                 let visibleWindow = visibleWindow as? NSDictionary,
                 let visibleWindowLayer = visibleWindow.value(forKey: "kCGWindowLayer") as? Int,
+                let visibleWindowNumber = visibleWindow.value(forKey: "kCGWindowNumber") as? CGWindowID,
                 let visibleWindowOwnerPID = visibleWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t,
                 let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String,
                 let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String,
                 let bounds = visibleWindow.value(forKey: "kCGWindowBounds") as? NSDictionary,
-                let height = bounds.value(forKey: "Height") as? CGFloat,
-                let width = bounds.value(forKey: "Width") as? CGFloat,
-                let x = bounds.value(forKey: "X") as? CGFloat,
-                let y = bounds.value(forKey: "Y") as? CGFloat
+                let height = bounds.value(forKey: "Height") as? CGFloat
             else {
                 continue
             }
@@ -164,11 +164,11 @@ extension Entrance {
             }
             
             let window = Window(
+                number: visibleWindowNumber,
+                title: visibleWindowName,
                 appPID: visibleWindowOwnerPID,
                 appName: visibleWindowOwnerName,
-                appIcon: icon,
-                title: visibleWindowName,
-                bounds: NSRect(x: x, y: y, width: width, height: height)
+                appIcon: icon
             )
             
             windows.append(window)
@@ -184,52 +184,26 @@ extension Entrance {
     private static func removeCurrentlyFocusedWindow(from visibleWindows: [Window]) -> [Window] {
         var visibleWindowsExcludingTheFocusedWindow = visibleWindows
         
-        if let axFocusedWindow = axFocusedWindow() {
-            // first pass
+        if let axFocusedWindowNumber = axFocusedWindowNumber() {
             visibleWindowsExcludingTheFocusedWindow.removeAll { cgWindow in
-                cgWindow.appPID == axFocusedWindow.appPID
-                && cgWindow.title == axFocusedWindow.title
-                && cgWindow.bounds == axFocusedWindow.bounds
-            }
-            
-            // second pass for same windows that return different titles with CG and AX
-            // in that case, if no window has been found at first pass, we match only with app and bounds, not title
-            if visibleWindows.count == visibleWindowsExcludingTheFocusedWindow.count {
-                visibleWindowsExcludingTheFocusedWindow.removeAll { cgWindow in
-                    cgWindow.appPID == axFocusedWindow.appPID
-                    && cgWindow.bounds == axFocusedWindow.bounds
-                }
+                cgWindow.number == axFocusedWindowNumber
             }
         }
                
         return visibleWindowsExcludingTheFocusedWindow
     }
 
-    private static func axFocusedWindow() -> Window? {
+    private static func axFocusedWindowNumber() -> CGWindowID? {
         guard let pid = NSWorkspace.shared.frontmostApplication?.processIdentifier else { return nil }
         let axApplication = AXUIElementCreateApplication(pid)
         
         var axWindow: AnyObject?
         guard AXUIElementCopyAttributeValue(axApplication, kAXFocusedWindowAttribute as CFString, &axWindow) == .success else { return nil }
-               
-        var values: CFArray?
-        guard AXUIElementCopyMultipleAttributeValues(axWindow as! AXUIElement, [kAXTitleAttribute, kAXPositionAttribute, kAXSizeAttribute] as CFArray, AXCopyMultipleAttributeOptions(rawValue: 0), &values) == .success else { return nil }
-        guard let windowValues = values as NSArray? else { return nil }
-                   
-        let title = windowValues[0] as? String ?? ""
-        var position = CGPoint()
-        AXValueGetValue(windowValues[1] as! AXValue, .cgPoint, &position)
-        var size = CGSize()
-        AXValueGetValue(windowValues[2] as! AXValue, .cgSize, &size)
-        let bounds = NSRect(x: position.x, y: position.y, width: size.width, height: size.height)
         
-        return Window(
-            appPID: pid,
-            appName: "",
-            appIcon: "",
-            title: title,
-            bounds: bounds
-        )
+        var axWindowNumber: CGWindowID = 0
+        guard _AXUIElementGetWindow((axWindow as! AXUIElement), &axWindowNumber) == .success else { return nil }
+        
+        return axWindowNumber
     }
     
 }
