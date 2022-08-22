@@ -17,30 +17,30 @@ ___
 
 # Why
 
-Aren't you annoyed when you have your fingers gently caressing your keyboard for hours but then you have one of those popups or windows that you can't reach?
-Alfred can switch apps but not windows within apps, nor windows without apps. Well here you go.
+Aren't you annoyed when you have your fingers gently caressing your keyboard for hours but then you have one of those popups or windows that you can't reach and then you have to move your hand for like a whole second?
+Alfred can switch apps but not windows within apps, nor windows without apps. So here you go.
 
 # Features
 
 * FAST
 * brings visible windows to the foreground
-* all visible windows are listed except the already currently focused one
-* Alfred results order follows windows order: first result is frontmost window, last result is backmost window
-* windows are matched by title, position and size so 99.9% accurate
-* FAST
+* all visible windows are listed except the one you're already on because why would you want that
+* Alfred results order follows windows order: first result is frontmost window (if not already focused, else second frontmost), last result is backmost window
+* window match is 100% accurate
+* DID I SAY FAST???
+
+# Permissions
+
+This Workflow needs [Accessibility Permissions](https://support.apple.com/en-mo/guide/mac-help/mh43185/mac) in order to manipulate windows.
+Most probably you have already given those permissions to Alfred, which is enough.
+If that's not the case, you'll need to grant permissions to Alfred itself, or to this Workflow specifically.
+Up to what makes you more comfortable.
 
 # Why is this an Alfred Workflow and not part of Wooshy?
 
 The goal of [Wooshy](https://wooshy.app) is to take as little screen estate as possible. What you want to see from Wooshy is the list of UI elements it can help you reach, not a big Input with a list of results à la Alfred.
 Having this in Wooshy would then require creating one more Input specifically made for this feature, which means one more keyboard shortcut to remember. That's bad UX.
 If you use Wooshy, you probably also use Alfred. It's the perfect tool for this.
-
-# Permissions
-
-macOS requires `Screen Recording` permissions (yes. huh?) to [read windows names](https://github.com/godbout/WooshyWindowToTheForeground/blob/129f1cdf213988d194135e95a9cdb55621840183/WooshyWindowToTheForeground/Core/Menus/Entrance.swift#L60), and the `Accessibility` permissions to manipulate windows.
-
-⚠️ Developers can only show the `Screen Recording` permissions dialog once. This is a "feature" from Apple.
-If for whatever reason you've missed it or denied the permissions, you'll have to add Alfred or this Workflow manually in the macOS `Privacy & Security` Settings, or [reset the permissions dialog status manually](https://apple.stackexchange.com/questions/384230/how-do-i-reset-screen-recording-permission-on-macos-catalina).
 
 # Roadmap
 
