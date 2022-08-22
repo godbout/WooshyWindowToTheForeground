@@ -9,8 +9,6 @@ struct Window {
     let appPID: pid_t
     let appName: String?
     let appIcon: String?
-    let title: String
-    let bounds: NSRect
     
 }
 
@@ -44,15 +42,7 @@ class Entrance {
         if visibleWindows.isEmpty {
             ScriptFilter.add(
                 Item(title: "Desktop is all clean! No window found.")
-                    .subtitle("Doesn't feel right? Maybe you haven't granted permissions. Press ↵ for the prompts, ⌘↵ for the README")
-                    .arg("do")
-                    .variable(Variable(name: "action", value: "promptPermissionDialogs"))
-                    .mod(
-                        Cmd()
-                            .subtitle("README here I come!")
-                            .arg("do")
-                            .variable(Variable(name: "action", value: "headToREADME"))
-                    )
+                    .valid(false)
             )
         } else {
             let visibleWindowsExcludingTheFocusedWindow = removeCurrentlyFocusedWindow(from: visibleWindows)
@@ -84,7 +74,7 @@ class Entrance {
         if let release = Updater.updateAvailable() {
             ScriptFilter.add(updateItem(for: release))
         }
-
+        
         return ScriptFilter.output()
     }
     

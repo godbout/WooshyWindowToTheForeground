@@ -33,6 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9185CBD928B3541B00BA533D /* WooshyWindowToTheForeground-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WooshyWindowToTheForeground-Bridging-Header.h"; sourceTree = "<group>"; };
 		91D4FC6528B287A90009A6EF /* WooshyWindowToTheForeground */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WooshyWindowToTheForeground; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D4FC7128B287FC0009A6EF /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		91D4FC7328B287FC0009A6EF /* Workflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workflow.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 				91D4FC7628B287FC0009A6EF /* Menus */,
 				91D4FC7428B287FC0009A6EF /* Updater */,
 				91D4FC7328B287FC0009A6EF /* Workflow.swift */,
+				9185CBD928B3541B00BA533D /* WooshyWindowToTheForeground-Bridging-Header.h */,
 			);
 			path = WooshyWindowToTheForeground;
 			sourceTree = "<group>";
@@ -333,6 +335,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "WooshyWindowToTheForeground/WooshyWindowToTheForeground-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -386,6 +389,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "WooshyWindowToTheForeground/WooshyWindowToTheForeground-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;

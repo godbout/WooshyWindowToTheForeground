@@ -17,12 +17,8 @@ public struct Workflow {
         switch ProcessInfo.processInfo.environment["action"] {
         case "headToGitHubIssues":
             return headToGitHubIssues()
-        case "headToREADME":
-            return headToREADME()
         case "bringWindowToForeground":
             return bringWindowToForeground()
-        case "promptPermissionDialogs":
-            return promptPermissionDialogs()
         default:
             return false
         }
@@ -30,12 +26,6 @@ public struct Workflow {
     
     private static func headToGitHubIssues() -> Bool {
         NSWorkspace.shared.open(URL(string: "https://github.com/godbout/WooshyWindowToTheForeground/issues")!)
-        
-        return true
-    }
-    
-    private static func headToREADME() -> Bool {
-        NSWorkspace.shared.open(URL(string: "https://github.com/godbout/WooshyWindowToTheForeground#permissions")!)
         
         return true
     }
@@ -72,13 +62,6 @@ public struct Workflow {
         app?.activate(options:.activateIgnoringOtherApps)
         
         AXUIElementPerformAction(window, kAXRaiseAction as CFString)
-        
-        return true
-    }
-    
-    // TODO: remove including within the Alfred Result?
-    private static func promptPermissionDialogs() -> Bool {
-        AXIsProcessTrustedWithOptions([kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true] as CFDictionary)
         
         return true
     }
