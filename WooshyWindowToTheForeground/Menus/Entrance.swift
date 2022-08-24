@@ -15,6 +15,7 @@ struct Window {
 
 class Entrance {
     static let shared = Entrance()
+    static var screenRecordingGranted = false
     
     private init() {}
     
@@ -40,10 +41,25 @@ class Entrance {
         }
         
         if visibleWindows.isEmpty {
-            ScriptFilter.add(
-                Item(title: "Desktop is all clean! No window found.")
-                    .valid(false)
-            )
+            if Self.screenRecordingGranted == true {
+                ScriptFilter.add(
+                    Item(title: "Desktop is all clean! No window found.")
+                        .valid(false)
+                )
+            } else {
+                ScriptFilter.add(
+                    Item(title: "🔐️🔐️🔐️ Screen Recording and/or Accessibility permissions needed 🔐️🔐️🔐️")
+                        .subtitle("Press ↵ to grant permissions, ⌘↵ for the README")
+                        .arg("do")
+                        .variable(Variable(name: "action", value: "promptPermissionDialogs"))
+                        .mod(
+                            Cmd()
+                                .subtitle("README here I come!")
+                                .arg("do")
+                                .variable(Variable(name: "action", value: "headToREADME"))
+                        )
+                )
+            }
         } else {
             let visibleWindowsExcludingTheFocusedWindow = removeCurrentlyFocusedWindow(from: visibleWindows)
             
@@ -133,11 +149,17 @@ extension Entrance {
                 let visibleWindowNumber = visibleWindow.value(forKey: "kCGWindowNumber") as? CGWindowID,
                 let visibleWindowOwnerPID = visibleWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t,
                 let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String,
-                let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String,
                 let bounds = visibleWindow.value(forKey: "kCGWindowBounds") as? NSDictionary,
                 let height = bounds.value(forKey: "Height") as? CGFloat
             else {
                 continue
+            }
+            
+            let visibleWindowName = visibleWindow.value(forKey: "kCGWindowName") as? String
+            if visibleWindowName == nil {
+                continue
+            } else {
+                Self.screenRecordingGranted = true
             }
             
             guard visibleWindowIsNotAMenuBarIcon(layer: visibleWindowLayer, height: height) else { continue }
@@ -155,7 +177,7 @@ extension Entrance {
             
             let window = Window(
                 number: visibleWindowNumber,
-                title: visibleWindowName,
+                title: visibleWindowName!,
                 appPID: visibleWindowOwnerPID,
                 appName: visibleWindowOwnerName,
                 appIcon: icon
