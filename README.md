@@ -17,7 +17,8 @@ ___
 
 # Why
 
-Aren't you annoyed when you have your fingers gently caressing your keyboard for hours but then you have one of those popups or windows that you can't reach and then you have to move your hand for like a whole second?
+Aren't you annoyed when you have your fingers gently caressing your keyboard for hours but then you have one of those popups or windows that you can't reach and then you have to move your whole hand for like a whole second?
+
 Alfred can switch apps but not windows within apps, nor windows without apps. So here you go.
 
 # Features
@@ -32,9 +33,16 @@ Alfred can switch apps but not windows within apps, nor windows without apps. So
 # Permissions
 
 macOS requires `Screen Recording` permissions (yes. huh?) to [read windows names](https://github.com/godbout/WooshyWindowToTheForeground/blob/c906b1921ad4b419f8aa99a469a2a3f76b0952fb/WooshyWindowToTheForeground/Menus/Entrance.swift#L158), and the `Accessibility` permissions to manipulate windows.
+You most probably have alread given the `Accessibility` permissions to Alfred, which is enough.
+For the `Screen Recording` permissions, the Workflow will detect if they're missing and you'll be able to prompt from an Alfred Result.
 
 ⚠️ Developers can only show the `Screen Recording` permissions dialog once. This is a "feature" from Apple.
 If for whatever reason you've missed it or denied the permissions, you'll have to add Alfred or this Workflow manually in the macOS `Privacy & Security` Settings, or [reset the permissions dialog status manually](https://apple.stackexchange.com/questions/384230/how-do-i-reset-screen-recording-permission-on-macos-catalina).
+
+# Updates
+
+Wooshy: Window to the Foreground! comes with the [Alfred Workflow Updater](https://github.com/godbout/AlfredWorkflowUpdater) integrated. Updates are checked by default every 24 hours.
+If an update is available, it will show up at the end of your Alfred Results when you use the Workflow.
 
 # Why is this an Alfred Workflow and not part of Wooshy?
 
