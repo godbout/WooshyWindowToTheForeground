@@ -48,7 +48,7 @@ If an update is available, it will show up at the end of your Alfred Results whe
 
 The goal of [Wooshy](https://wooshy.app) is to take as little screen estate as possible. What you want to see from Wooshy is the list of UI elements it can help you reach, not a big Input with a list of results à la Alfred.
 Having this in Wooshy would then require creating one more Input specifically made for this feature, which means one more keyboard shortcut to remember. That's bad UX.
-If you use Wooshy, you probably also use Alfred. It's the perfect tool for this.
+If you use Wooshy, you probably also use Alfred. Alfred is the perfect tool for this.
 
 # Roadmap
 
