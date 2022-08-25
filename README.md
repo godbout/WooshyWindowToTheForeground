@@ -33,7 +33,7 @@ Alfred can switch apps but not windows within apps, nor windows without apps. So
 # Permissions
 
 macOS requires `Screen Recording` permissions (yes. huh?) to [read windows names](https://github.com/godbout/WooshyWindowToTheForeground/blob/c906b1921ad4b419f8aa99a469a2a3f76b0952fb/WooshyWindowToTheForeground/Menus/Entrance.swift#L158), and the `Accessibility` permissions to manipulate windows.
-You most probably have alread given the `Accessibility` permissions to Alfred, which is enough.
+You most probably have already given the `Accessibility` permissions to Alfred, which is enough.
 For the `Screen Recording` permissions, the Workflow will detect if they're missing and you'll be able to prompt from an Alfred Result.
 
 ⚠️ Developers can only show the `Screen Recording` permissions dialog once. This is a "feature" from Apple.
