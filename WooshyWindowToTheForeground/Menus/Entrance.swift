@@ -120,6 +120,7 @@ extension Entrance {
     
     // kCGWindowLayer:
     // 0: normal windows
+    // 3: Font window
     // 8: don't remember
     // 20: Character View when not extended
     // 23: don't remember
@@ -131,6 +132,7 @@ extension Entrance {
         guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: """
             (
                 kCGWindowLayer == 0
+                || kCGWindowLayer == 3
                 || kCGWindowLayer == 8
                 || kCGWindowLayer == 20
                 || kCGWindowLayer == 23
