@@ -127,6 +127,7 @@ extension Entrance {
     // 25: stuff from the status bar. was filtered out at first but some windows like the Apple ID 2FA shows up as 25.
     // so now we grab them, and filter out the ones that have a small height because those ones are probably icons for the status bar.
     // 28: Character View when extended
+    // 1000: 1Password is trying to unlock macOS window
     private static func cgVisibleWindows() -> [Window]? {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
         guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: """
@@ -138,6 +139,7 @@ extension Entrance {
                 || kCGWindowLayer == 23
                 || kCGWindowLayer == 25
                 || kCGWindowLayer == 28
+                || (kCGWindowLayer == 1000 && kCGWindowName != "")
             )
             && kCGWindowAlpha > 0
             """)) as NSArray? else { return nil }
