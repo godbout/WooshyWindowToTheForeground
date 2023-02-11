@@ -194,7 +194,7 @@ extension Entrance {
     }
         
     private static func visibleWindowIsNotAMenuBarIcon(layer: Int, height: Double) -> Bool {
-        layer != 25 || height > 37 // Prevents the menu bar icons from showing up on Macbooks with notch
+        layer != 25 || height > 37
     }
     
     private static func removeCurrentlyFocusedWindow(from visibleWindows: [Window]) -> [Window] {
