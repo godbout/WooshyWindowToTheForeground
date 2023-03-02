@@ -118,29 +118,12 @@ extension Entrance {
         return cgVisibleWindows
     }
     
-    // kCGWindowLayer:
-    // 0: normal windows
-    // 3: Font window
-    // 8: don't remember
-    // 20: Character View when not extended
-    // 23: don't remember
-    // 25: stuff from the status bar. was filtered out at first but some windows like the Apple ID 2FA shows up as 25.
-    // so now we grab them, and filter out the ones that have a small height because those ones are probably icons for the status bar.
-    // 28: Character View when extended
-    // 1000: 1Password is trying to unlock macOS window
     private static func cgVisibleWindows() -> [Window]? {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
         guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: """
-            (
-                kCGWindowLayer == 0
-                || kCGWindowLayer == 3
-                || kCGWindowLayer == 8
-                || kCGWindowLayer == 20
-                || kCGWindowLayer == 23
-                || kCGWindowLayer == 25
-                || kCGWindowLayer == 28
-                || (kCGWindowLayer == 1000 && kCGWindowName != "")
-            )
+            (kCGWindowBounds.Width > 37 && kCGWindowBounds.Height > 37)
+            && kCGWindowOwnerName != "Alfred"
+            && kCGWindowOwnerName != "Notification Center"
             && kCGWindowAlpha > 0
             """)) as NSArray? else { return nil }
         
@@ -149,12 +132,9 @@ extension Entrance {
         for visibleWindow in visibleWindows {
             guard
                 let visibleWindow = visibleWindow as? NSDictionary,
-                let visibleWindowLayer = visibleWindow.value(forKey: "kCGWindowLayer") as? Int,
                 let visibleWindowNumber = visibleWindow.value(forKey: "kCGWindowNumber") as? CGWindowID,
                 let visibleWindowOwnerPID = visibleWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t,
-                let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String,
-                let bounds = visibleWindow.value(forKey: "kCGWindowBounds") as? NSDictionary,
-                let height = bounds.value(forKey: "Height") as? CGFloat
+                let visibleWindowOwnerName = visibleWindow.value(forKey: "kCGWindowOwnerName") as? String
             else {
                 continue
             }
@@ -166,8 +146,6 @@ extension Entrance {
                 Self.screenRecordingGranted = true
             }
             
-            guard visibleWindowIsNotAMenuBarIcon(layer: visibleWindowLayer, height: height) else { continue }
-                
             var icon: String
             if
                 let application = NSRunningApplication(processIdentifier: visibleWindowOwnerPID),
