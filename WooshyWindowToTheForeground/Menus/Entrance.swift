@@ -41,7 +41,7 @@ class Entrance {
         }
         
         if visibleWindows.isEmpty {
-            if Self.screenRecordingGranted == true {
+            if CGPreflightScreenCaptureAccess() == true {
                 ScriptFilter.add(
                     Item(title: "Desktop is all clean! No window found.")
                         .valid(false)
