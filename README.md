@@ -41,7 +41,7 @@ If for whatever reason you've missed it or denied the permissions, you'll have t
 
 # Updates
 
-Wooshy: Window to the Foreground! comes with the [Alfred Workflow Updater](https://github.com/godbout/AlfredWorkflowUpdater) integrated. Updates are checked by default every 24 hours.
+Wooshy: Window to the Foreground! comes with the [Alfred Workflow Updater](https://github.com/godbout/AlfredWorkflowUpdater) integrated. Updates are checked by default every 12 hours.
 If an update is available, it will show up at the end of your Alfred Results when you use the Workflow.
 
 # Why is this an Alfred Workflow and not part of Wooshy?
