@@ -103,6 +103,7 @@ extension Entrance {
             (kCGWindowBounds.Width > 37 && kCGWindowBounds.Height > 37)
             && kCGWindowOwnerName != "Alfred"
             && kCGWindowOwnerName != "Notification Center"
+            && kCGWindowOwnerName != "Wallpaper"
             && kCGWindowAlpha > 0
             """)) as NSArray? else { return nil }
         
