@@ -61,9 +61,10 @@ class Entrance {
                 )
             }
         } else {
-            let visibleWindowsExcludingTheFocusedWindow = removeCurrentlyFocusedWindow(from: visibleWindows)
+            let filterOutFocusedWindow = (ProcessInfo.processInfo.environment["filter_out_focused_window"] == "1" ? true : false)
+            let visibleWindowsToShowInAlfredResults = filterOutFocusedWindow ? removeCurrentlyFocusedWindow(from: visibleWindows) : visibleWindows
             
-            if visibleWindowsExcludingTheFocusedWindow.isEmpty {
+            if visibleWindowsToShowInAlfredResults.isEmpty {
                 ScriptFilter.add(
                     Item(title: "The only visible window is the one you're already on!")
                         .subtitle("Press ↵ to go back to it")
@@ -71,7 +72,7 @@ class Entrance {
                         .variable(Variable(name: "action", value: "nothing"))
                 )
             } else {
-                for window in visibleWindowsExcludingTheFocusedWindow {
+                for window in visibleWindowsToShowInAlfredResults {
                     ScriptFilter.add(
                         Item(title: window.title)
                             .subtitle(window.appName ?? "")
@@ -176,19 +177,29 @@ extension Entrance {
         layer != 25 || height > 37
     }
     
-    // the previous version of this function was "safer" in the sense that it captured the exact Focused Window
-    // while now the func removes the most top window that **should** be the Focused Window.
-    // the change was made because the call to AXUIElementCopyAttributeValue was taking 40ms, which was almost doubling
-    // the time it takes for the Workflow to grab the windows and render the Alfred Results. and that would make the
-    // Workflow feel slow (to my taste). so yeah, priorities.
     private static func removeCurrentlyFocusedWindow(from visibleWindows: [Window]) -> [Window] {
         var visibleWindowsExcludingTheFocusedWindow = visibleWindows
-        
-        if visibleWindowsExcludingTheFocusedWindow.isEmpty == false {
-            visibleWindowsExcludingTheFocusedWindow.removeFirst()
+
+        if let axFocusedWindowNumber = axFocusedWindowNumber() {
+            visibleWindowsExcludingTheFocusedWindow.removeAll { cgWindow in
+                cgWindow.number == axFocusedWindowNumber
+            }
         }
 
         return visibleWindowsExcludingTheFocusedWindow
+    }
+
+    private static func axFocusedWindowNumber() -> CGWindowID? {
+        guard let pid = NSWorkspace.shared.frontmostApplication?.processIdentifier else { return nil }
+        let axApplication = AXUIElementCreateApplication(pid)
+
+        var axWindow: AnyObject?
+        guard AXUIElementCopyAttributeValue(axApplication, kAXFocusedWindowAttribute as CFString, &axWindow) == .success else { return nil }
+
+        var axWindowNumber: CGWindowID = 0
+        guard _AXUIElementGetWindow((axWindow as! AXUIElement), &axWindowNumber) == .success else { return nil }
+
+        return axWindowNumber
     }
 
 }
