@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>mo.com.sleeplessmind.WooshyWindowToTheForeground</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>100E1B0E-4FE6-4D20-880D-1A76493D7FBB</key>
@@ -331,7 +333,7 @@
 	<key>readme</key>
 	<string>## Switch macOS Windows with Alfred
 
-*Wooshy: Window to the Foreground!* lists all you current visible windows, except the one you're already on. The Windows are sorted from the most foreground to the most background. Pick a Window from the Alfred Results and it'll be pushed in the foreground, your caret ready to act.
+*Wooshy: Window to the Foreground!* starts by listing your current visible macOS Windows. The Windows are sorted from the most foreground to the most background. Pick a Window from the Alfred Results and it'll be pushed to the foreground, your caret all ready to act.
 
 ![ww](resources/images/ww.png)
 
@@ -431,9 +433,35 @@ Head to the [GitHub repository](https://github.com/godbout/WooshyWindowToTheFore
 			<key>variable</key>
 			<string>workflow_keyword</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>1</string>
+				<key>pairs</key>
+				<array>
+					<array>
+						<string>filter it out from the Alfred Results</string>
+						<string>1</string>
+					</array>
+					<array>
+						<string>keep it in Alfred Results</string>
+						<string>0</string>
+					</array>
+				</array>
+			</dict>
+			<key>description</key>
+			<string>filtering out the currently focused Window is preferrable but will slow down the generation of Alfred Results a tad.</string>
+			<key>label</key>
+			<string>The Currently Focused Window</string>
+			<key>type</key>
+			<string>popupbutton</string>
+			<key>variable</key>
+			<string>filter_out_focused_window</string>
+		</dict>
 	</array>
 	<key>version</key>
-	<string>3.0.0</string>
+	<string>3.1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/godbout/WooshyWindowToTheForeground</string>
 </dict>
