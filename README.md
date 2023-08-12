@@ -41,7 +41,7 @@ If for whatever reason you've missed it or denied the permissions, you'll have t
 
 # Updates
 
-Starting with version 3.0.0 _Wooshy: Window to the Foreground!_ is built to be integrated with the new [Alfred Gallery](https://alfred.app). Now Alfred itself will take care of the Workflow's update!
+Starting with version 3.0.0 _Wooshy: Window to the Foreground!_ is built to be integrated with the new [Alfred Gallery](https://alfred.app). Alfred itself will now take care of the Workflow's updates!
 
 # Why is this an Alfred Workflow and not part of Wooshy?
 
