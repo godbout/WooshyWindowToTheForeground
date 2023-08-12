@@ -50,4 +50,4 @@ jobs:
     - name: build
       run: |
         cd Sources
-        xcodebuild -scheme "WooshyWindowToTheForeground" -configuration "Debug" -usePackageSupportBuiltinSCM -derivedDataPath $GITHUB_WORKSPACE -enableCodeCoverage YES clean build
+        xcodebuild -scheme "WooshyWindowToTheForeground" -configuration "Debug" -usePackageSupportBuiltinSCM -derivedDataPath $GITHUB_WORKSPACE clean build
