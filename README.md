@@ -25,8 +25,8 @@ Alfred can switch apps but not windows within apps, nor windows without apps. So
 
 * FAST
 * brings visible windows to the foreground
-* all visible windows are listed except the one you're already on because why would you want that
-* Alfred results order follows windows order: first result is frontmost window (if not already focused, else second frontmost), last result is backmost window
+* all visible windows are listed except the one you're already on because why would you want that (last part is actually changeable through the Workflow Configuration)
+* Alfred results order follows windows order: first result is most frontmost, last result is most backmost (LOL)
 * window match is 100% accurate
 * DID I SAY FAST???
 
@@ -41,8 +41,7 @@ If for whatever reason you've missed it or denied the permissions, you'll have t
 
 # Updates
 
-Wooshy: Window to the Foreground! comes with the [Alfred Workflow Updater](https://github.com/godbout/AlfredWorkflowUpdater) integrated. Updates are checked by default every 12 hours.
-If an update is available, it will show up at the end of your Alfred Results when you use the Workflow.
+Starting with version 3.0.0 _Wooshy: Window to the Foreground!_ is built to be integrated with the new [Alfred Gallery](https://www.google.com/search?q=alfred+gallery). Now Alfred itself will take care of the Workflow's update!
 
 # Why is this an Alfred Workflow and not part of Wooshy?
 
