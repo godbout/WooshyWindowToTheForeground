@@ -7,17 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91BE418628B29ACE009224B8 /* Workflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7328B287FC0009A6EF /* Workflow.swift */; };
 		91D4FC7828B287FC0009A6EF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7128B287FC0009A6EF /* main.swift */; };
 		91D4FC7928B287FC0009A6EF /* Workflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7328B287FC0009A6EF /* Workflow.swift */; };
-		91D4FC7A28B287FC0009A6EF /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7528B287FC0009A6EF /* Updater.swift */; };
 		91D4FC7B28B287FC0009A6EF /* Entrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7728B287FC0009A6EF /* Entrance.swift */; };
 		91D4FC7E28B2882D0009A6EF /* AlfredWorkflowScriptFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 91D4FC7D28B2882D0009A6EF /* AlfredWorkflowScriptFilter */; };
-		91D4FC9428B288840009A6EF /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC9128B288840009A6EF /* UpdateTests.swift */; };
-		91D4FC9528B288840009A6EF /* WooshyWindowToTheForegroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundTests.swift */; };
-		91D4FC9728B288B60009A6EF /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7528B287FC0009A6EF /* Updater.swift */; };
-		91D4FC9828B288B80009A6EF /* Entrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4FC7728B287FC0009A6EF /* Entrance.swift */; };
-		91D4FC9B28B288CD0009A6EF /* AlfredWorkflowScriptFilter in Frameworks */ = {isa = PBXBuildFile; productRef = 91D4FC9A28B288CD0009A6EF /* AlfredWorkflowScriptFilter */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,11 +30,7 @@
 		91D4FC6528B287A90009A6EF /* WooshyWindowToTheForeground */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WooshyWindowToTheForeground; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D4FC7128B287FC0009A6EF /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		91D4FC7328B287FC0009A6EF /* Workflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workflow.swift; sourceTree = "<group>"; };
-		91D4FC7528B287FC0009A6EF /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		91D4FC7728B287FC0009A6EF /* Entrance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entrance.swift; sourceTree = "<group>"; };
-		91D4FC8328B2886B0009A6EF /* WooshyWindowToTheForegroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WooshyWindowToTheForegroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		91D4FC9128B288840009A6EF /* UpdateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTests.swift; sourceTree = "<group>"; };
-		91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WooshyWindowToTheForegroundTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +42,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		91D4FC8028B2886B0009A6EF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				91D4FC9B28B288CD0009A6EF /* AlfredWorkflowScriptFilter in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -68,7 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				91D4FC6728B287A90009A6EF /* WooshyWindowToTheForeground */,
-				91D4FC8428B2886B0009A6EF /* WooshyWindowToTheForegroundTests */,
 				91D4FC6628B287A90009A6EF /* Products */,
 				91D4FC9928B288CD0009A6EF /* Frameworks */,
 			);
@@ -78,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				91D4FC6528B287A90009A6EF /* WooshyWindowToTheForeground */,
-				91D4FC8328B2886B0009A6EF /* WooshyWindowToTheForegroundTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,19 +67,10 @@
 			children = (
 				91D4FC7128B287FC0009A6EF /* main.swift */,
 				91D4FC7628B287FC0009A6EF /* Menus */,
-				91D4FC7428B287FC0009A6EF /* Updater */,
 				91D4FC7328B287FC0009A6EF /* Workflow.swift */,
 				9185CBD928B3541B00BA533D /* WooshyWindowToTheForeground-Bridging-Header.h */,
 			);
 			path = WooshyWindowToTheForeground;
-			sourceTree = "<group>";
-		};
-		91D4FC7428B287FC0009A6EF /* Updater */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC7528B287FC0009A6EF /* Updater.swift */,
-			);
-			path = Updater;
 			sourceTree = "<group>";
 		};
 		91D4FC7628B287FC0009A6EF /* Menus */ = {
@@ -109,47 +79,6 @@
 				91D4FC7728B287FC0009A6EF /* Entrance.swift */,
 			);
 			path = Menus;
-			sourceTree = "<group>";
-		};
-		91D4FC8428B2886B0009A6EF /* WooshyWindowToTheForegroundTests */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC9028B288840009A6EF /* Feature */,
-				91D4FC8C28B288840009A6EF /* Resources */,
-				91D4FC9228B288840009A6EF /* WooshyWindowToTheForegroundTests.swift */,
-			);
-			path = WooshyWindowToTheForegroundTests;
-			sourceTree = "<group>";
-		};
-		91D4FC8C28B288840009A6EF /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC8D28B288840009A6EF /* Caches */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		91D4FC8D28B288840009A6EF /* Caches */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC8E28B288840009A6EF /* WooshyWindowToTheForeground */,
-			);
-			path = Caches;
-			sourceTree = "<group>";
-		};
-		91D4FC8E28B288840009A6EF /* WooshyWindowToTheForeground */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WooshyWindowToTheForeground;
-			sourceTree = "<group>";
-		};
-		91D4FC9028B288840009A6EF /* Feature */ = {
-			isa = PBXGroup;
-			children = (
-				91D4FC9128B288840009A6EF /* UpdateTests.swift */,
-			);
-			path = Feature;
 			sourceTree = "<group>";
 		};
 		91D4FC9928B288CD0009A6EF /* Frameworks */ = {
@@ -182,26 +111,6 @@
 			productReference = 91D4FC6528B287A90009A6EF /* WooshyWindowToTheForeground */;
 			productType = "com.apple.product-type.tool";
 		};
-		91D4FC8228B2886B0009A6EF /* WooshyWindowToTheForegroundTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 91D4FC8728B2886B0009A6EF /* Build configuration list for PBXNativeTarget "WooshyWindowToTheForegroundTests" */;
-			buildPhases = (
-				91D4FC7F28B2886B0009A6EF /* Sources */,
-				91D4FC8028B2886B0009A6EF /* Frameworks */,
-				91D4FC8128B2886B0009A6EF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = WooshyWindowToTheForegroundTests;
-			packageProductDependencies = (
-				91D4FC9A28B288CD0009A6EF /* AlfredWorkflowScriptFilter */,
-			);
-			productName = WooshyWindowToTheForegroundTests;
-			productReference = 91D4FC8328B2886B0009A6EF /* WooshyWindowToTheForegroundTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,9 +122,6 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					91D4FC6428B287A90009A6EF = {
-						CreatedOnToolsVersion = 14.0;
-					};
-					91D4FC8228B2886B0009A6EF = {
 						CreatedOnToolsVersion = 14.0;
 					};
 				};
@@ -237,20 +143,9 @@
 			projectRoot = "";
 			targets = (
 				91D4FC6428B287A90009A6EF /* WooshyWindowToTheForeground */,
-				91D4FC8228B2886B0009A6EF /* WooshyWindowToTheForegroundTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		91D4FC8128B2886B0009A6EF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		91D4FC6128B287A90009A6EF /* Sources */ = {
@@ -259,20 +154,7 @@
 			files = (
 				91D4FC7928B287FC0009A6EF /* Workflow.swift in Sources */,
 				91D4FC7B28B287FC0009A6EF /* Entrance.swift in Sources */,
-				91D4FC7A28B287FC0009A6EF /* Updater.swift in Sources */,
 				91D4FC7828B287FC0009A6EF /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		91D4FC7F28B2886B0009A6EF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				91D4FC9828B288B80009A6EF /* Entrance.swift in Sources */,
-				91D4FC9728B288B60009A6EF /* Updater.swift in Sources */,
-				91D4FC9428B288840009A6EF /* UpdateTests.swift in Sources */,
-				91D4FC9528B288840009A6EF /* WooshyWindowToTheForegroundTests.swift in Sources */,
-				91BE418628B29ACE009224B8 /* Workflow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,9 +283,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ZX49WKA8QN;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = ZX49WKA8QN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = mo.com.sleeplessmind.WooshyWindowToTheForeground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -416,49 +300,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ZX49WKA8QN;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = ZX49WKA8QN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = mo.com.sleeplessmind.WooshyWindowToTheForeground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		91D4FC8828B2886B0009A6EF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ZX49WKA8QN;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mo.com.sleeplessmind.WooshyWindowToTheForegroundTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		91D4FC8928B2886B0009A6EF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ZX49WKA8QN;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mo.com.sleeplessmind.WooshyWindowToTheForegroundTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -484,15 +334,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		91D4FC8728B2886B0009A6EF /* Build configuration list for PBXNativeTarget "WooshyWindowToTheForegroundTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				91D4FC8828B2886B0009A6EF /* Debug */,
-				91D4FC8928B2886B0009A6EF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -508,11 +349,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		91D4FC7D28B2882D0009A6EF /* AlfredWorkflowScriptFilter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 91D4FC7C28B2882C0009A6EF /* XCRemoteSwiftPackageReference "AlfredWorkflowScriptFilter" */;
-			productName = AlfredWorkflowScriptFilter;
-		};
-		91D4FC9A28B288CD0009A6EF /* AlfredWorkflowScriptFilter */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 91D4FC7C28B2882C0009A6EF /* XCRemoteSwiftPackageReference "AlfredWorkflowScriptFilter" */;
 			productName = AlfredWorkflowScriptFilter;
