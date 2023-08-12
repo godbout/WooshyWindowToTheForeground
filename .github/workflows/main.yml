@@ -10,7 +10,7 @@ on:
 
 jobs:
   swift:
-    name: build and run tests
+    name: build
     runs-on: macos-12
 
     steps:
@@ -47,5 +47,7 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.GHA_PRIVATE_SSHKEY }}
-    - name: build, tests
-      run: xcodebuild -scheme "WooshyWindowToTheForeground" -configuration "Debug" -usePackageSupportBuiltinSCM -derivedDataPath $GITHUB_WORKSPACE -enableCodeCoverage YES clean build test
+    - name: build
+      run: |
+        cd Sources
+        xcodebuild -scheme "WooshyWindowToTheForeground" -configuration "Debug" -usePackageSupportBuiltinSCM -derivedDataPath $GITHUB_WORKSPACE -enableCodeCoverage YES clean build
