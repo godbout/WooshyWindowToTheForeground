@@ -105,7 +105,9 @@ extension Entrance {
             && kCGWindowOwnerName != "Alfred"
             && kCGWindowOwnerName != "Notification Center"
             && kCGWindowOwnerName != "Wallpaper"
+            && kCGWindowOwnerName != "Screenshot"
             && (kCGWindowOwnerName != "HazeOver" || kCGWindowAlpha = 1)
+            && (kCGWindowOwnerName != "Magnet" || kCGWindowLayer != 25)
             && kCGWindowAlpha > 0
             """)) as NSArray? else { return nil }
         
