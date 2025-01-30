@@ -15,7 +15,25 @@ struct Window {
 
 class Entrance {
     static let shared = Entrance()
+    
     static var screenRecordingGranted = false
+    // filtering out:
+    // 1. Menu Bar Icons
+    // 2. Windows that are not transparent
+    // 3. a bunch of Window Server Windows (Cursor, StatusIndicator, Menubar, etc.)
+    // 4. Notification Center when it shows up (like receiving a Notification)
+    // 5. a Screenshot Window that doesn't go away after you used Screenshot
+    // 6. Alfred itself
+    static let windowsFilter: String = {
+"""
+kCGWindowLayer != 25
+&& kCGWindowAlpha > 0
+&& kCGWindowOwnerName != "Window Server"
+&& kCGWindowOwnerName != "Notification Center"
+&& kCGWindowOwnerName != "Screenshot"
+&& kCGWindowOwnerName != "Alfred"
+"""
+    }()
     
     private init() {}
     
@@ -100,16 +118,7 @@ extension Entrance {
     
     private static func cgVisibleWindows() -> [Window]? {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
-        guard let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: """
-            (kCGWindowBounds.Width > 37 && kCGWindowBounds.Height > 37)
-            && kCGWindowOwnerName != "Alfred"
-            && kCGWindowOwnerName != "Notification Center"
-            && kCGWindowOwnerName != "Wallpaper"
-            && kCGWindowOwnerName != "Screenshot"
-            && (kCGWindowOwnerName != "HazeOver" || kCGWindowAlpha = 1)
-            && (kCGWindowOwnerName != "Magnet" || kCGWindowLayer != 25)
-            && kCGWindowAlpha > 0
-            """)) as NSArray? else { return nil }
+        let visibleWindows = tooManyWindows.filtered(using: NSPredicate(format: windowsFilter))
         
         var windows: [Window] = []
                
