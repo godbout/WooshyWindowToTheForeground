@@ -39,19 +39,11 @@ For the `Screen Recording` permissions, the Workflow will detect if they're miss
 ⚠️ Developers can only show the `Screen Recording` permissions dialog once. This is a "feature" from Apple.
 If for whatever reason you've missed it or denied the permissions, you'll have to add Alfred or this Workflow manually in the macOS `Privacy & Security` Settings, or [reset the permissions dialog status manually](https://apple.stackexchange.com/questions/384230/how-do-i-reset-screen-recording-permission-on-macos-catalina).
 
-# Updates
-
-Starting with version 3.0.0 _Wooshy: Window to the Foreground!_ is built to be integrated with the new [Alfred Gallery](https://alfred.app). Alfred itself will now take care of the Workflow's updates!
-
 # Why is this an Alfred Workflow and not part of Wooshy?
 
 The goal of [Wooshy](https://wooshy.app) is to take as little screen estate as possible. What you want to see from Wooshy is the list of UI elements it can help you reach, not a big Input with a list of results à la Alfred.
 Having this in Wooshy would then require creating one more Input specifically made for this feature, which means one more keyboard shortcut to remember. That's bad UX.
 If you use Wooshy, you probably also use Alfred. Alfred is the perfect tool for this.
-
-# Roadmap
-
-[Here](https://github.com/godbout/WooshyWindowToTheForeground/issues?q=is%3Aissue+is%3Aopen+label%3Aroadmap).
 
 # But I use Raycast!
 
