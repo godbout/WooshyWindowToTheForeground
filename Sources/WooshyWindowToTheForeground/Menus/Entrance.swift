@@ -167,10 +167,11 @@ extension Entrance {
     private static func removeCurrentlyFocusedWindow(from visibleWindows: [Window]) -> [Window] {
         var visibleWindowsExcludingTheFocusedWindow = visibleWindows
 
-        if let axFocusedWindowNumber = axFocusedWindowNumber() {
-            visibleWindowsExcludingTheFocusedWindow.removeAll { cgWindow in
-                cgWindow.number == axFocusedWindowNumber
-            }
+        if
+            let firstVisibleWindow = visibleWindows.first,
+            firstVisibleWindow.appPID == NSWorkspace.shared.frontmostApplication?.processIdentifier
+        {
+            visibleWindowsExcludingTheFocusedWindow.removeFirst()
         }
 
         return visibleWindowsExcludingTheFocusedWindow
