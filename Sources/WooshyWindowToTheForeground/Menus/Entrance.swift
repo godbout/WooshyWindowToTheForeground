@@ -23,7 +23,8 @@ class Entrance {
     // 3. a bunch of Window Server Windows (Cursor, StatusIndicator, Menubar, etc.)
     // 4. Notification Center when it shows up (like receiving a Notification)
     // 5. a Screenshot Window that doesn't go away after you used Screenshot
-    // 6. Alfred itself
+    // 6. a bunch of Stage Manager Windows
+    // 7. Alfred itself
     static let windowsFilter: String = {
 """
 kCGWindowLayer != 25
@@ -31,6 +32,7 @@ kCGWindowLayer != 25
 && kCGWindowOwnerName != "Window Server"
 && kCGWindowOwnerName != "Notification Center"
 && kCGWindowOwnerName != "Screenshot"
+&& kCGWindowOwnerName != "WindowManager"
 && kCGWindowOwnerName != "Alfred"
 """
     }()
