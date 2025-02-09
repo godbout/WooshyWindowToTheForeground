@@ -17,9 +17,9 @@ class Entrance {
     static let shared = Entrance()
     
     static var screenRecordingGranted = false
-    // filtering out:
+    // filter out:
     // 1. Menu Bar Icons
-    // 2. Windows that are not transparent
+    // 2. Transparent Windows
     // 3. a bunch of Window Server Windows (Cursor, StatusIndicator, Menubar, etc.)
     // 4. Notification Center when it shows up (like receiving a Notification)
     // 5. a Screenshot Window that doesn't go away after you used Screenshot
