@@ -6,8 +6,9 @@ struct ExcludedWindows: Codable {
 
 struct ExcludedWindow: Codable {
     
-    let windowTitle: String
+    let title: String
     let appName: String
+    let appIcon: String
     
 }
 
@@ -38,6 +39,8 @@ public struct Workflow {
             return promptPermissionDialogs()
         case "excludeWindowFromAlfredResults":
             return excludeWindowFromAlfredResults()
+        case "includeBackWindow":
+            return includeBackWindow()
         default:
             return false
         }
@@ -113,8 +116,11 @@ extension Workflow {
     }
     
     private static func excludeWindowFromAlfredResults() -> Bool {
-        guard let windowTitle = ProcessInfo.processInfo.environment["windowTitle"] else { return false }
-        guard let appName = ProcessInfo.processInfo.environment["appName"] else { return false }
+        guard
+            let windowTitle = ProcessInfo.processInfo.environment["windowTitle"],
+            let appName = ProcessInfo.processInfo.environment["appName"],
+            let appIcon = ProcessInfo.processInfo.environment["appIcon"]
+        else { return false }
 
         if FileManager.default.fileExists(atPath: excludedWindowsPlistFile) {
             let excludedWindowsPlistFileURL = URL(fileURLWithPath: excludedWindowsPlistFile)
