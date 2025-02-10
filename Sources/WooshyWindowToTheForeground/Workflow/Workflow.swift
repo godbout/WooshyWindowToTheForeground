@@ -1,11 +1,29 @@
+struct ExcludedWindows: Codable {
+    
+    var windows: [ExcludedWindow]
+    
+}
+
+struct ExcludedWindow: Codable {
+    
+    let windowTitle: String
+    let appName: String
+    
+}
+
+
 public struct Workflow {
+    
+    static let excludedWindowsPlistFile = "\(ProcessInfo.processInfo.environment["alfred_workflow_data"] ?? "")/excluded_windows.plist"
     
     public static func next() -> String {
         ProcessInfo.processInfo.environment["next"] ?? "oops"
     }
     
     public static func menu() -> String {
-        Entrance.scriptFilter()
+        createExcludedWindowsPlistFileIfNecessary()
+        
+        return Entrance.scriptFilter()
     }
     
     public static func `do`() -> Bool {
@@ -18,8 +36,24 @@ public struct Workflow {
             return bringWindowToForeground()
         case "promptPermissionDialogs":
             return promptPermissionDialogs()
+        case "excludeWindowFromAlfredResults":
+            return excludeWindowFromAlfredResults()
         default:
             return false
+        }
+    }
+    
+}
+
+
+extension Workflow {
+
+    private static func createExcludedWindowsPlistFileIfNecessary() {
+        if FileManager.default.fileExists(atPath: excludedWindowsPlistFile) == false {
+            let encoder = PropertyListEncoder()
+            guard let encoded = try? encoder.encode(ExcludedWindows(windows: [])) else { return }
+            
+            FileManager.default.createFile(atPath: excludedWindowsPlistFile, contents: encoded)
         }
     }
     
@@ -74,6 +108,30 @@ public struct Workflow {
     private static func promptPermissionDialogs() -> Bool {
         AXIsProcessTrustedWithOptions([kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true] as CFDictionary)
         CGRequestScreenCaptureAccess()
+        
+        return true
+    }
+    
+    private static func excludeWindowFromAlfredResults() -> Bool {
+        guard let windowTitle = ProcessInfo.processInfo.environment["windowTitle"] else { return false }
+        guard let appName = ProcessInfo.processInfo.environment["appName"] else { return false }
+
+        if FileManager.default.fileExists(atPath: excludedWindowsPlistFile) {
+            let excludedWindowsPlistFileURL = URL(fileURLWithPath: excludedWindowsPlistFile)
+            guard let data = try? Data(contentsOf: excludedWindowsPlistFileURL) else { return false }
+            
+            let decoder = PropertyListDecoder()
+            guard var excludedWindows = try? decoder.decode(ExcludedWindows.self, from: data) else { return false }
+            
+            excludedWindows.windows.append(ExcludedWindow(windowTitle: windowTitle, appName: appName))
+            
+            let encoder = PropertyListEncoder()
+            guard let encoded = try? encoder.encode(excludedWindows) else { return false }
+            
+            try? encoded.write(to: excludedWindowsPlistFileURL)
+        }
+        
+        NSWorkspace.shared.open(URL(string: "alfred://runtrigger/mo.com.sleeplessmind.WooshyWindowToTheForeground/list_onscreen")!)
         
         return true
     }
