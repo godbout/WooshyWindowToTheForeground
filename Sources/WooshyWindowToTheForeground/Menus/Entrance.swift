@@ -96,7 +96,7 @@ extension Entrance {
         if windowsToShowInAlfredResults.isEmpty {
             if CGPreflightScreenCaptureAccess() == true {
                 ScriptFilter.add(
-                    Item(title: "Desktop is all clean! No window found.")
+                    Item(title: "Desktop is all clean! No Window found.")
                         .valid(false)
                 )
             } else {
@@ -119,7 +119,7 @@ extension Entrance {
             
             if windowsToShowInAlfredResults.isEmpty {
                 ScriptFilter.add(
-                    Item(title: "The only visible window is the one you're already on!")
+                    Item(title: "The only visible Window is the one you're already on!")
                         .subtitle("Press ↵ to go back to it")
                         .arg("do")
                         .variable(Variable(name: "action", value: "nothing"))
