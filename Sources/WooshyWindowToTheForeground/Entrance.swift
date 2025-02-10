@@ -15,6 +15,9 @@ struct Window {
 class Entrance {
     static let shared = Entrance()
     
+    // TODO: WTF IS THIS
+    static var screenRecordingGranted = false
+    
     private init() {}
     
     
@@ -22,13 +25,8 @@ class Entrance {
         results()
     }
         
-}
-
-
-extension Entrance {
-    
-    private static func results() -> String {
-        guard let windowsToShowInAlfredResults = onscreenWindowsExcludingExcludedWindowsLOL() else {
+    static func results() -> String {
+        guard let onscreenWindows = onscreenWindows() else {
             ScriptFilter.add(
                 Item(title: "🚨️ Oops 🚨️ Something is failing badly. The smart thing to do is to report!")
                     .subtitle("Press ↵ to fly to the GitHub Issues page")
@@ -39,7 +37,7 @@ extension Entrance {
             return ScriptFilter.output()
         }
         
-        if windowsToShowInAlfredResults.isEmpty {
+        if onscreenWindows.isEmpty {
             if CGPreflightScreenCaptureAccess() == true {
                 ScriptFilter.add(
                     Item(title: "Desktop is all clean! No window found.")
@@ -61,9 +59,9 @@ extension Entrance {
             }
         } else {
             let filterOutFocusedWindow = (ProcessInfo.processInfo.environment["filter_out_focused_window"] == "1" ? true : false)
-            let windowsToShowInAlfredResults = filterOutFocusedWindow ? removeCurrentlyFocusedWindow(from: windowsToShowInAlfredResults) : windowsToShowInAlfredResults
+            let onscreenWindowsToShowInAlfredResults = filterOutFocusedWindow ? removeCurrentlyFocusedWindow(from: onscreenWindows) : onscreenWindows
             
-            if windowsToShowInAlfredResults.isEmpty {
+            if onscreenWindowsToShowInAlfredResults.isEmpty {
                 ScriptFilter.add(
                     Item(title: "The only visible window is the one you're already on!")
                         .subtitle("Press ↵ to go back to it")
@@ -71,7 +69,7 @@ extension Entrance {
                         .variable(Variable(name: "action", value: "nothing"))
                 )
             } else {
-                for window in windowsToShowInAlfredResults {
+                for window in onscreenWindowsToShowInAlfredResults {
                     ScriptFilter.add(
                         Item(title: window.title)
                             .subtitle(window.appName ?? "")
@@ -98,7 +96,12 @@ extension Entrance {
         return ScriptFilter.output()
     }
     
-    private static func onscreenWindowsExcludingExcludedWindowsLOL() -> [Window]? {
+}
+
+
+extension Entrance {
+    
+    private static func onscreenWindows() -> [Window]? {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
         
         // filter out:
@@ -118,6 +121,7 @@ kCGWindowLayer != 25
 && kCGWindowOwnerName != "WindowManager"
 && kCGWindowOwnerName != "Alfred"
 """
+
         excludedWindows()?.windows.forEach { excludedWindow in
             windowsFilter.append("""
 && !(kCGWindowOwnerName = "\(excludedWindow.appName)" && kCGWindowName = "\(excludedWindow.windowTitle)")
@@ -125,21 +129,30 @@ kCGWindowLayer != 25
             )
         }
                
+        let onscreenWindows = tooManyWindows.filtered(using: NSPredicate(format: windowsFilter))
+        
         var windows: [Window] = []
-        for window in tooManyWindows.filtered(using: NSPredicate(format: windowsFilter)) {
+               
+        for onscreenWindow in onscreenWindows {
             guard
-                let window = window as? NSDictionary,
-                let windowNumber = window.value(forKey: "kCGWindowNumber") as? CGWindowID,
-                let windowOwnerPID = window.value(forKey: "kCGWindowOwnerPID") as? pid_t,
-                let windowOwnerName = window.value(forKey: "kCGWindowOwnerName") as? String,
-                let windowName = window.value(forKey: "kCGWindowName") as? String
+                let onscreenWindow = onscreenWindow as? NSDictionary,
+                let onscreenWindowNumber = onscreenWindow.value(forKey: "kCGWindowNumber") as? CGWindowID,
+                let onscreenWindowOwnerPID = onscreenWindow.value(forKey: "kCGWindowOwnerPID") as? pid_t,
+                let onscreenWindowOwnerName = onscreenWindow.value(forKey: "kCGWindowOwnerName") as? String
             else {
                 continue
             }
             
+            let onscreenWindowName = onscreenWindow.value(forKey: "kCGWindowName") as? String
+            if onscreenWindowName == nil {
+                continue
+            } else {
+                Self.screenRecordingGranted = true
+            }
+            
             var icon: String
             if
-                let application = NSRunningApplication(processIdentifier: windowOwnerPID),
+                let application = NSRunningApplication(processIdentifier: onscreenWindowOwnerPID),
                 let bundleIdentifier = application.bundleIdentifier,
                 let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleIdentifier)
             {
@@ -147,8 +160,16 @@ kCGWindowLayer != 25
             } else {
                 icon = Bundle.main.bundlePath
             }
-                        
-            windows.append(Window(number: windowNumber, title: windowName, appPID: windowOwnerPID, appName: windowOwnerName, appIcon: icon))
+            
+            let window = Window(
+                number: onscreenWindowNumber,
+                title: onscreenWindowName!,
+                appPID: onscreenWindowOwnerPID,
+                appName: onscreenWindowOwnerName,
+                appIcon: icon
+            )
+            
+            windows.append(window)
         }
         
         return windows

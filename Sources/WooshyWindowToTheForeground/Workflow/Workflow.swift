@@ -131,8 +131,6 @@ extension Workflow {
             try? encoded.write(to: excludedWindowsPlistFileURL)
         }
         
-        NSWorkspace.shared.open(URL(string: "alfred://runtrigger/mo.com.sleeplessmind.WooshyWindowToTheForeground/list_onscreen")!)
-        
         return true
     }
 
