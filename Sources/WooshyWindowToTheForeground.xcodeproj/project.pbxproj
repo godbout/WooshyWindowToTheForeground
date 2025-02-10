@@ -45,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		916822182D59F77D0099681D /* Workflow */ = {
+			isa = PBXGroup;
+			children = (
+				91D4FC7328B287FC0009A6EF /* Workflow.swift */,
+			);
+			path = Workflow;
+			sourceTree = "<group>";
+		};
 		91D4FC5C28B287A90009A6EF = {
 			isa = PBXGroup;
 			children = (
@@ -67,7 +75,7 @@
 			children = (
 				91D4FC7128B287FC0009A6EF /* main.swift */,
 				91D4FC7628B287FC0009A6EF /* Menus */,
-				91D4FC7328B287FC0009A6EF /* Workflow.swift */,
+				916822182D59F77D0099681D /* Workflow */,
 				9185CBD928B3541B00BA533D /* WooshyWindowToTheForeground-Bridging-Header.h */,
 			);
 			path = WooshyWindowToTheForeground;
