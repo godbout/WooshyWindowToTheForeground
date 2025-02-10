@@ -6,8 +6,8 @@ struct Window {
     let number: CGWindowID
     let title: String
     let appPID: pid_t
-    let appName: String?
-    let appIcon: String?
+    let appName: String
+    let appIcon: String
     
 }
 
