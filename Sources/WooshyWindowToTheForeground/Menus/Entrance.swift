@@ -19,7 +19,11 @@ class Entrance {
     
     
     static func scriptFilter() -> String {
-        results()
+        if argument == "excluded" {
+            return resultsForExcludedWindows()
+        } else {
+            return resultsForOnscreenWindowsExcludingExcludedWindowsLOL()
+        }
     }
         
 }
@@ -27,7 +31,57 @@ class Entrance {
 
 extension Entrance {
     
-    private static func results() -> String {
+    private static var argument: String? {
+        guard CommandLine.arguments.count >= 2 else { return nil }
+        
+        return CommandLine.arguments[1]
+    }
+
+    private static func resultsForExcludedWindows() -> String {
+        guard let excludedWindows = excludedWindows()?.windows else {
+            ScriptFilter.add(
+                Item(title: "🚨️ Oops 🚨️ Something is failing badly. The smart thing to do is to report!")
+                    .subtitle("Press ↵ to fly to the GitHub Issues page")
+                    .arg("do")
+                    .variable(Variable(name: "action", value: "headToGitHubIssues"))
+            )
+            
+            return ScriptFilter.output()
+        }
+        
+        if excludedWindows.isEmpty {
+            ScriptFilter.add(
+                Item(title: "You haven't excluded any Window yet!")
+                    .valid(false)
+            )
+        } else {
+            for window in excludedWindows {
+                ScriptFilter.add(
+                    Item(title: window.title)
+                        .subtitle(window.appName)
+                        .match("\(window.appName) \(window.title)")
+                        .icon(Icon(path: window.appIcon, type: .fileicon))
+                        .arg("do")
+                        .variable(Variable(name: "windowTitle", value: window.title))
+                        .variable(Variable(name: "appName", value: window.appName))
+                        .variable(Variable(name: "action", value: "includeBackWindow"))
+                        .mod(
+                            Cmd()
+                                .subtitle("Unban this Window")
+                                .arg("do")
+                                .variable(Variable(name: "windowTitle", value: window.title))
+                                .variable(Variable(name: "appName", value: window.appName))
+                                .variable(Variable(name: "action", value: "includeBackWindow"))
+                        )
+                )
+            }
+            
+        }
+        
+        return ScriptFilter.output()
+    }
+    
+    private static func resultsForOnscreenWindowsExcludingExcludedWindowsLOL() -> String {
         guard let windowsToShowInAlfredResults = onscreenWindowsExcludingExcludedWindowsLOL() else {
             ScriptFilter.add(
                 Item(title: "🚨️ Oops 🚨️ Something is failing badly. The smart thing to do is to report!")
@@ -35,10 +89,10 @@ extension Entrance {
                     .arg("do")
                     .variable(Variable(name: "action", value: "headToGitHubIssues"))
             )
-                    
+            
             return ScriptFilter.output()
         }
-        
+            
         if windowsToShowInAlfredResults.isEmpty {
             if CGPreflightScreenCaptureAccess() == true {
                 ScriptFilter.add(
@@ -74,9 +128,9 @@ extension Entrance {
                 for window in windowsToShowInAlfredResults {
                     ScriptFilter.add(
                         Item(title: window.title)
-                            .subtitle(window.appName ?? "")
-                            .match("\(window.appName ?? "") \(window.title)")
-                            .icon(Icon(path: window.appIcon ?? "", type: .fileicon))
+                            .subtitle(window.appName)
+                            .match("\(window.appName) \(window.title)")
+                            .icon(Icon(path: window.appIcon, type: .fileicon))
                             .arg("do")
                             .variable(Variable(name: "windowNumber", value: String(window.number)))
                             .variable(Variable(name: "windowTitle", value: window.title))
@@ -84,17 +138,18 @@ extension Entrance {
                             .variable(Variable(name: "action", value: "bringWindowToForeground"))
                             .mod(
                                 Cmd()
-                                    .subtitle("Exclude this Window from Alfred's Results")
+                                    .subtitle("Ban this Window from Alfred's Results")
                                     .arg("do")
                                     .variable(Variable(name: "windowTitle", value: window.title))
                                     .variable(Variable(name: "appName", value: window.appName))
+                                    .variable(Variable(name: "appIcon", value: window.appIcon))
                                     .variable(Variable(name: "action", value: "excludeWindowFromAlfredResults"))
                             )
                     )
                 }
             }
         }
-        
+                
         return ScriptFilter.output()
     }
     
