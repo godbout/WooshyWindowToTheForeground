@@ -175,13 +175,12 @@ kCGWindowLayer != 25
 """
         excludedWindows()?.windows.forEach { excludedWindow in
             windowsFilter.append("""
-&& !(kCGWindowOwnerName = "\(excludedWindow.appName)" && kCGWindowName = "\(excludedWindow.windowTitle)")
+&& !(kCGWindowOwnerName = "\(excludedWindow.appName)" && kCGWindowName = "\(excludedWindow.title)")
 """
             )
         }
                
-        var windows: [Window] = []
-        for window in tooManyWindows.filtered(using: NSPredicate(format: windowsFilter)) {
+        let windows: [Window] = tooManyWindows.filtered(using: NSPredicate(format: windowsFilter)).compactMap { window in
             guard
                 let window = window as? NSDictionary,
                 let windowNumber = window.value(forKey: "kCGWindowNumber") as? CGWindowID,
@@ -189,21 +188,16 @@ kCGWindowLayer != 25
                 let windowOwnerName = window.value(forKey: "kCGWindowOwnerName") as? String,
                 let windowName = window.value(forKey: "kCGWindowName") as? String
             else {
-                continue
+                return nil
             }
             
-            var icon: String
-            if
-                let application = NSRunningApplication(processIdentifier: windowOwnerPID),
-                let bundleIdentifier = application.bundleIdentifier,
-                let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleIdentifier)
-            {
-                icon = url.path
-            } else {
-                icon = Bundle.main.bundlePath
-            }
-                        
-            windows.append(Window(number: windowNumber, title: windowName, appPID: windowOwnerPID, appName: windowOwnerName, appIcon: icon))
+            return Window(
+                number: windowNumber,
+                title: windowName,
+                appPID: windowOwnerPID,
+                appName: windowOwnerName,
+                appIcon: NSRunningApplication(processIdentifier: windowOwnerPID)?.bundleURL?.path ?? Bundle.main.bundlePath
+            )
         }
         
         return windows
