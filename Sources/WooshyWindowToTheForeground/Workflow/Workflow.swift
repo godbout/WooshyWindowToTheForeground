@@ -123,7 +123,33 @@ extension Workflow {
             let decoder = PropertyListDecoder()
             guard var excludedWindows = try? decoder.decode(ExcludedWindows.self, from: data) else { return false }
             
-            excludedWindows.windows.append(ExcludedWindow(windowTitle: windowTitle, appName: appName))
+            excludedWindows.windows.append(ExcludedWindow(title: windowTitle, appName: appName, appIcon: appIcon))
+            
+            let encoder = PropertyListEncoder()
+            guard let encoded = try? encoder.encode(excludedWindows) else { return false }
+            
+            try? encoded.write(to: excludedWindowsPlistFileURL)
+        }
+        
+        return true
+    }
+    
+    private static func includeBackWindow() -> Bool {
+        guard
+            let windowTitle = ProcessInfo.processInfo.environment["windowTitle"],
+            let appName = ProcessInfo.processInfo.environment["appName"]
+        else { return false }
+
+        if FileManager.default.fileExists(atPath: excludedWindowsPlistFile) {
+            let excludedWindowsPlistFileURL = URL(fileURLWithPath: excludedWindowsPlistFile)
+            guard let data = try? Data(contentsOf: excludedWindowsPlistFileURL) else { return false }
+            
+            let decoder = PropertyListDecoder()
+            guard var excludedWindows = try? decoder.decode(ExcludedWindows.self, from: data) else { return false }
+            
+            excludedWindows.windows.removeAll { window in
+                window.title == windowTitle && window.appName == appName
+            }
             
             let encoder = PropertyListEncoder()
             guard let encoded = try? encoder.encode(excludedWindows) else { return false }
