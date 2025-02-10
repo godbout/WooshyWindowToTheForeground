@@ -1,8 +1,3 @@
-import Foundation
-import AlfredWorkflowScriptFilter
-import AppKit
-
-
 public struct Workflow {
     
     public static func next() -> String {

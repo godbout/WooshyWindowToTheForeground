@@ -1,5 +1,4 @@
 import AlfredWorkflowScriptFilter
-import AppKit
 
 
 struct Window {
