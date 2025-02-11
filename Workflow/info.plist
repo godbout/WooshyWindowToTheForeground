@@ -4,19 +4,19 @@
 <dict>
 	<key>bundleid</key>
 	<string>mo.com.sleeplessmind.WooshyWindowToTheForeground</string>
-	<key>category</key>
-	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>100E1B0E-4FE6-4D20-880D-1A76493D7FBB</key>
+		<key>17286C7E-919B-4527-9D44-0EDEC16BC102</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C25CB9F4-16AD-40B9-8724-20B3105E0FF0</string>
+				<string>1AEA87D2-9C7F-41B2-BCFD-5977A16CA4BA</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>sourceoutputuid</key>
+				<string>2CAEBB9E-902A-4928-8A9B-033E8AB8C28A</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -34,11 +34,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>882D67DA-1A54-4E17-8C97-7C81093FF707</key>
+		<key>59EE4A1D-3BE4-4E6D-902D-0DEEA35EE294</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>B27924E4-85A5-4853-ADD6-EA679085AD02</string>
+				<string>F5B8C768-8813-4745-B95F-1F4ABC437BE6</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -47,23 +47,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>B27924E4-85A5-4853-ADD6-EA679085AD02</key>
+		<key>882D67DA-1A54-4E17-8C97-7C81093FF707</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>A4EA4B43-3C45-498D-8615-B52EFD967438</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>sourceoutputuid</key>
-				<string>35322F1C-1972-45AF-B0E7-71A08ABB09CF</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>100E1B0E-4FE6-4D20-880D-1A76493D7FBB</string>
+				<string>C25CB9F4-16AD-40B9-8724-20B3105E0FF0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -73,12 +61,38 @@
 			</dict>
 		</array>
 		<key>C25CB9F4-16AD-40B9-8724-20B3105E0FF0</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>17286C7E-919B-4527-9D44-0EDEC16BC102</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>D093C93B-2029-42F6-A33A-24C5277ABC78</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>FA949D1A-C6D0-4D25-AD54-86D05D156CB9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E93BF5EB-9369-42BE-9B90-9A45D7DF2E13</key>
+		<array/>
+		<key>F5B8C768-8813-4745-B95F-1F4ABC437BE6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>882D67DA-1A54-4E17-8C97-7C81093FF707</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -100,6 +114,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>FF13D08C-0C0F-4286-AC03-288AA9E6E2A1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F5B8C768-8813-4745-B95F-1F4ABC437BE6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Guillaume Leclerc</string>
@@ -111,6 +138,114 @@
 	<string>Wooshy: Window to the Foreground!</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>availableviaurlhandler</key>
+				<true/>
+				<key>triggerid</key>
+				<string>onscreen</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>18C10997-27FE-4B40-A45A-AC97DF7EF59E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>for quick debugging purposes</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>E93BF5EB-9369-42BE-9B90-9A45D7DF2E13</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:list_onscreen_windows_keyword}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>./resources/binaries/WooshyWindowToTheForeground</string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>8</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>FA949D1A-C6D0-4D25-AD54-86D05D156CB9</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>./resources/binaries/WooshyWindowToTheForeground</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C25CB9F4-16AD-40B9-8724-20B3105E0FF0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -145,121 +280,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>start</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>A4EA4B43-3C45-498D-8615-B52EFD967438</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>availableviaurlhandler</key>
-				<false/>
-				<key>triggerid</key>
-				<string>start</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>18C10997-27FE-4B40-A45A-AC97DF7EF59E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>2</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>{var:workflow_keyword}</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>2</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>./resources/binaries/WooshyWindowToTheForeground "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>FA949D1A-C6D0-4D25-AD54-86D05D156CB9</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string>{var:next}</string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>1</integer>
-						<key>matchstring</key>
-						<string>do</string>
-						<key>outputlabel</key>
-						<string>menu</string>
-						<key>uid</key>
-						<string>35322F1C-1972-45AF-B0E7-71A08ABB09CF</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>do</string>
-				<key>hideelse</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>B27924E4-85A5-4853-ADD6-EA679085AD02</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
 				<string></string>
 				<key>passthroughargument</key>
@@ -280,57 +300,146 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>externaltriggerid</key>
+				<string>onscreen</string>
+				<key>passinputasargument</key>
 				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./resources/binaries/WooshyWindowToTheForeground</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.callexternaltrigger</string>
 			<key>uid</key>
-			<string>C25CB9F4-16AD-40B9-8724-20B3105E0FF0</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>for quick debugging purposes</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>E93BF5EB-9369-42BE-9B90-9A45D7DF2E13</string>
+			<string>1AEA87D2-9C7F-41B2-BCFD-5977A16CA4BA</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>unstackview</key>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
 				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>2</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.hidealfred</string>
+			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
-			<string>100E1B0E-4FE6-4D20-880D-1A76493D7FBB</string>
+			<string>FF13D08C-0C0F-4286-AC03-288AA9E6E2A1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:list_excluded_windows_keyword}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./resources/binaries/WooshyWindowToTheForeground excluded</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F5B8C768-8813-4745-B95F-1F4ABC437BE6</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:action}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>excludeWindowFromAlfredResults</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>2CAEBB9E-902A-4928-8A9B-033E8AB8C28A</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>17286C7E-919B-4527-9D44-0EDEC16BC102</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>excluded</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>59EE4A1D-3BE4-4E6D-902D-0DEEA35EE294</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -351,12 +460,12 @@ This Workflow was originally made to be used in combination with [Wooshy](https:
 Head to the [GitHub repository](https://github.com/godbout/WooshyWindowToTheForeground)!</string>
 	<key>uidata</key>
 	<dict>
-		<key>100E1B0E-4FE6-4D20-880D-1A76493D7FBB</key>
+		<key>17286C7E-919B-4527-9D44-0EDEC16BC102</key>
 		<dict>
 			<key>xpos</key>
-			<real>410</real>
+			<real>485</real>
 			<key>ypos</key>
-			<real>310</real>
+			<real>535</real>
 		</dict>
 		<key>18C10997-27FE-4B40-A45A-AC97DF7EF59E</key>
 		<dict>
@@ -365,54 +474,74 @@ Head to the [GitHub repository](https://github.com/godbout/WooshyWindowToTheFore
 			<key>ypos</key>
 			<real>15</real>
 		</dict>
-		<key>882D67DA-1A54-4E17-8C97-7C81093FF707</key>
+		<key>1AEA87D2-9C7F-41B2-BCFD-5977A16CA4BA</key>
 		<dict>
 			<key>xpos</key>
-			<real>210</real>
+			<real>740</real>
 			<key>ypos</key>
-			<real>265</real>
+			<real>385</real>
 		</dict>
-		<key>A4EA4B43-3C45-498D-8615-B52EFD967438</key>
-		<dict>
-			<key>xpos</key>
-			<real>590</real>
-			<key>ypos</key>
-			<real>15</real>
-		</dict>
-		<key>B27924E4-85A5-4853-ADD6-EA679085AD02</key>
-		<dict>
-			<key>xpos</key>
-			<real>305</real>
-			<key>ypos</key>
-			<real>255</real>
-		</dict>
-		<key>C25CB9F4-16AD-40B9-8724-20B3105E0FF0</key>
-		<dict>
-			<key>xpos</key>
-			<real>520</real>
-			<key>ypos</key>
-			<real>280</real>
-		</dict>
-		<key>D093C93B-2029-42F6-A33A-24C5277ABC78</key>
-		<dict>
-			<key>xpos</key>
-			<real>195</real>
-			<key>ypos</key>
-			<real>15</real>
-		</dict>
-		<key>E93BF5EB-9369-42BE-9B90-9A45D7DF2E13</key>
-		<dict>
-			<key>xpos</key>
-			<real>690</real>
-			<key>ypos</key>
-			<real>280</real>
-		</dict>
-		<key>FA949D1A-C6D0-4D25-AD54-86D05D156CB9</key>
+		<key>59EE4A1D-3BE4-4E6D-902D-0DEEA35EE294</key>
 		<dict>
 			<key>xpos</key>
 			<real>30</real>
 			<key>ypos</key>
-			<real>235</real>
+			<real>545</real>
+		</dict>
+		<key>882D67DA-1A54-4E17-8C97-7C81093FF707</key>
+		<dict>
+			<key>xpos</key>
+			<real>470</real>
+			<key>ypos</key>
+			<real>225</real>
+		</dict>
+		<key>C25CB9F4-16AD-40B9-8724-20B3105E0FF0</key>
+		<dict>
+			<key>xpos</key>
+			<real>625</real>
+			<key>ypos</key>
+			<real>85</real>
+		</dict>
+		<key>D093C93B-2029-42F6-A33A-24C5277ABC78</key>
+		<dict>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+		<key>E93BF5EB-9369-42BE-9B90-9A45D7DF2E13</key>
+		<dict>
+			<key>note</key>
+			<string>just for me to connect to scripts when debugging and be able to print("hehe") and some more stuff.</string>
+			<key>xpos</key>
+			<real>850</real>
+			<key>ypos</key>
+			<real>30</real>
+		</dict>
+		<key>F5B8C768-8813-4745-B95F-1F4ABC437BE6</key>
+		<dict>
+			<key>note</key>
+			<string>language is `zsh` for this one coz i need to pass an argument. hmm. extra speed is not an issue here coz it's already blazing fast, but might need to rethink how i build Workflows...</string>
+			<key>xpos</key>
+			<real>255</real>
+			<key>ypos</key>
+			<real>395</real>
+		</dict>
+		<key>FA949D1A-C6D0-4D25-AD54-86D05D156CB9</key>
+		<dict>
+			<key>note</key>
+			<string>language is `External Script` rather than `zsh` here because it's sometimes up to twice faster and speed is primordial when dealing with the expensive CGWindowList API.</string>
+			<key>xpos</key>
+			<real>250</real>
+			<key>ypos</key>
+			<real>85</real>
+		</dict>
+		<key>FF13D08C-0C0F-4286-AC03-288AA9E6E2A1</key>
+		<dict>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>390</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -432,11 +561,11 @@ Head to the [GitHub repository](https://github.com/godbout/WooshyWindowToTheFore
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Workflow Keyword</string>
+			<string>List Onscreen Windows with</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
-			<string>workflow_keyword</string>
+			<string>list_onscreen_windows_keyword</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -446,17 +575,17 @@ Head to the [GitHub repository](https://github.com/godbout/WooshyWindowToTheFore
 				<key>pairs</key>
 				<array>
 					<array>
-						<string>filter it out from the Alfred Results</string>
+						<string>filter it out from the Alfred's Results</string>
 						<string>1</string>
 					</array>
 					<array>
-						<string>keep it in Alfred Results</string>
+						<string>keep it in Alfred's Results</string>
 						<string>0</string>
 					</array>
 				</array>
 			</dict>
 			<key>description</key>
-			<string>filtering out the currently focused Window is preferrable but will slow down the generation of Alfred Results a tad.</string>
+			<string>Although this option allows you to keep the Currently Focused Window in Alfred's Results if you want, please note that it makes absolutely no sense and that if you do people will make fun of you in public.</string>
 			<key>label</key>
 			<string>The Currently Focused Window</string>
 			<key>type</key>
@@ -464,9 +593,32 @@ Head to the [GitHub repository](https://github.com/godbout/WooshyWindowToTheFore
 			<key>variable</key>
 			<string>filter_out_focused_window</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>-ww</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>List Excluded Windows with</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>list_excluded_windows_keyword</string>
+		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>3.3.0</string>
+	<string>3.4.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/godbout/WooshyWindowToTheForeground</string>
 </dict>
