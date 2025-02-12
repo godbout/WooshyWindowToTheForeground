@@ -15,14 +15,19 @@ struct ExcludedWindow: Codable {
 
 public struct Workflow {
     
-    static let excludedWindowsPlistFile = "\(ProcessInfo.processInfo.environment["alfred_workflow_data"] ?? "")/excluded_windows.plist"
+    static let alfredWorkflowData: String? = ProcessInfo.processInfo.environment["alfred_workflow_data"]
+    static let excludedWindowsPlistFile: String? = {
+        guard let alfredWorkflowData else { return nil }
+
+        return "\(alfredWorkflowData)/excluded_windows.plist"
+    }()
     
     public static func next() -> String {
         ProcessInfo.processInfo.environment["next"] ?? "oops"
     }
     
     public static func menu() -> String {
-        createExcludedWindowsPlistFileIfNecessary()
+        createWorkflowDataFolderAndExcludedWindowsPlistFileIfNecessary()
         
         return Entrance.scriptFilter()
     }
@@ -51,11 +56,19 @@ public struct Workflow {
 
 extension Workflow {
 
-    private static func createExcludedWindowsPlistFileIfNecessary() {
+    private static func createWorkflowDataFolderAndExcludedWindowsPlistFileIfNecessary() {
+        guard
+            let alfredWorkflowData,
+            let excludedWindowsPlistFile
+        else {
+            return
+        }
+                    
         if FileManager.default.fileExists(atPath: excludedWindowsPlistFile) == false {
             let encoder = PropertyListEncoder()
             guard let encoded = try? encoder.encode(ExcludedWindows(windows: [])) else { return }
             
+            try? FileManager.default.createDirectory(atPath: alfredWorkflowData, withIntermediateDirectories: true)
             FileManager.default.createFile(atPath: excludedWindowsPlistFile, contents: encoded)
         }
     }
@@ -120,9 +133,14 @@ extension Workflow {
             let windowTitle = ProcessInfo.processInfo.environment["windowTitle"],
             let appName = ProcessInfo.processInfo.environment["appName"],
             let appIcon = ProcessInfo.processInfo.environment["appIcon"]
-        else { return false }
-
-        if FileManager.default.fileExists(atPath: excludedWindowsPlistFile) {
+        else {
+            return false
+        }
+                
+        if
+            let excludedWindowsPlistFile,
+            FileManager.default.fileExists(atPath: excludedWindowsPlistFile)
+        {
             let excludedWindowsPlistFileURL = URL(fileURLWithPath: excludedWindowsPlistFile)
             guard let data = try? Data(contentsOf: excludedWindowsPlistFileURL) else { return false }
             
@@ -144,9 +162,14 @@ extension Workflow {
         guard
             let windowTitle = ProcessInfo.processInfo.environment["windowTitle"],
             let appName = ProcessInfo.processInfo.environment["appName"]
-        else { return false }
-
-        if FileManager.default.fileExists(atPath: excludedWindowsPlistFile) {
+        else {
+            return false
+        }
+        
+        if
+            let excludedWindowsPlistFile,
+            FileManager.default.fileExists(atPath: excludedWindowsPlistFile)
+        {
             let excludedWindowsPlistFileURL = URL(fileURLWithPath: excludedWindowsPlistFile)
             guard let data = try? Data(contentsOf: excludedWindowsPlistFileURL) else { return false }
             

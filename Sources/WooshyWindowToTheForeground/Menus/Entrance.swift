@@ -204,9 +204,14 @@ extension Entrance {
     }
     
     private static func excludedWindows() -> ExcludedWindows? {
-        guard FileManager.default.fileExists(atPath: Workflow.excludedWindowsPlistFile) else { return nil }
+        guard
+            let excludedWindowsPlistFile = Workflow.excludedWindowsPlistFile,
+            FileManager.default.fileExists(atPath: excludedWindowsPlistFile)
+        else {
+            return nil
+        }
         
-        let excludedWindowsPlistFileURL = URL(fileURLWithPath: Workflow.excludedWindowsPlistFile)
+        let excludedWindowsPlistFileURL = URL(fileURLWithPath: excludedWindowsPlistFile)
         guard let data = try? Data(contentsOf: excludedWindowsPlistFileURL) else { return nil }
             
         let decoder = PropertyListDecoder()
