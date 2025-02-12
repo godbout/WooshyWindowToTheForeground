@@ -331,8 +331,6 @@
 				<integer>0</integer>
 				<key>hotmod</key>
 				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -618,7 +616,7 @@ Head to the [GitHub repository](https://github.com/godbout/WooshyWindowToTheFore
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>3.4.0</string>
+	<string>3.5.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/godbout/WooshyWindowToTheForeground</string>
 </dict>
