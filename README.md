@@ -1,6 +1,7 @@
 <h1 align="center">Wooshy: Window to the Foreground!</h1>
 
 <p align="center">
+    <a href="https://www.alfredapp.com/alfred-5-whats-new/"><img src="https://img.shields.io/badge/Alfred-5-purple"></a>
     <a href="https://apps.apple.com/us/app/macos-big-sur/id1526878132?mt=12"><img src="https://img.shields.io/badge/macOS-11.5 Big%20Sur%2B-red"></a>
     <a href="https://github.com/godbout/WooshyWindowToTheForeground/actions"><img src="https://img.shields.io/github/actions/workflow/status/godbout/WooshyWindowToTheForeground/main.yml?branch=master" alt="Build Status"></a>
     <a href="https://github.com/godbout/WooshyWindowToTheForeground/releases"><img src="https://img.shields.io/github/release/godbout/WooshyWindowToTheForeground.svg" alt="GitHub Release"></a>
