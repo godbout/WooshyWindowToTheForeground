@@ -157,7 +157,7 @@ extension Entrance {
         guard let tooManyWindows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as NSArray? else { return nil }
         
         // keep Windows that are:
-        // 1. not Menu Bar Icons (can't use kCGWindowLayer 25 to filter because macOS Don't Allow / Allow popups are using 25 too)
+        // 1. not Menu Bar Icons (back to using kCGWindowLayer 25 as Apple finally fixed its kCGStatusWindowLevel vs kCGModalPanelWindowLevel fuckery)
         // 2. not Transparent Windows
         // 3. not a bunch of Window Server Windows (Cursor, StatusIndicator, Menubar, etc.)
         // 4. not Notification Center Windows that show up when receiving Notifications
@@ -165,7 +165,7 @@ extension Entrance {
         // 6. not a bunch of Stage Manager Windows
         // 7. not Alfred itself (Alfred Preferences is something else altogether and is embraced) 
         var windowsFilter = """
-(kCGWindowBounds.Width > 37 && kCGWindowBounds.Height > 37)
+kCGWindowLayer != 25
 && kCGWindowAlpha > 0
 && kCGWindowOwnerName != "Window Server"
 && kCGWindowOwnerName != "Notification Center"
