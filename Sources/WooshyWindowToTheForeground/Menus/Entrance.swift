@@ -176,7 +176,7 @@ kCGWindowLayer != 25
 """
         excludedWindows()?.windows.forEach { excludedWindow in
             windowsFilter.append("""
-&& !(kCGWindowOwnerName = "\(excludedWindow.appName)" && kCGWindowName = "\(excludedWindow.title)")
+&& !(kCGWindowOwnerName =[d] "\(excludedWindow.appName)" && kCGWindowName =[d] "\(excludedWindow.title)")
 """
             )
         }
