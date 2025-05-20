@@ -164,7 +164,7 @@ extension Entrance {
         // 4. not Notification Center Windows that show up when receiving Notifications
         // 5. not a Screenshot Window that doesn't go away after you used Screenshot
         // 6. not a bunch of Stage Manager Windows
-        // 7. not Alfred itself (Alfred Preferences is something else altogether and is embraced) 
+        // 7. not Alfred itself (Alfred Preferences is something else altogether and is embraced)
         var windowsFilter = """
 kCGWindowLayer != 25
 && kCGWindowAlpha > 0
@@ -222,7 +222,7 @@ kCGWindowLayer != 25
     }
         
     private static func removeCurrentlyFocusedWindow(from onscreenWindows: [Window]) -> [Window] {
-        guard 
+        guard
             let frontmostWindow = onscreenWindows.first,
             frontmostWindow.appPID == NSWorkspace.shared.frontmostApplication?.processIdentifier
         else {
