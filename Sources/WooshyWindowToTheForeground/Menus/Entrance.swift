@@ -13,6 +13,7 @@ struct Window {
 
 
 class Entrance {
+    
     static let shared = Entrance()
     
     private init() {}
