@@ -175,8 +175,12 @@ kCGWindowLayer != 25
 && kCGWindowOwnerName != "Alfred"
 """
         excludedWindows()?.windows.forEach { excludedWindow in
+            // necessary because of Korean: https://developer.apple.com/documentation/foundation/nscharacterset/decomposables#Discussion LOL
+            let precomposedAppName = String(data: excludedWindow.appName.precomposedStringWithCanonicalMapping.data(using: .utf8) ?? Data(), encoding: .utf8) ?? ""
+            let precomposedWindowTitle = String(data: excludedWindow.title.precomposedStringWithCanonicalMapping.data(using: .utf8) ?? Data(), encoding: .utf8) ?? ""
+            
             windowsFilter.append("""
-&& !(kCGWindowOwnerName =[d] "\(excludedWindow.appName)" && kCGWindowName =[d] "\(excludedWindow.title)")
+&& !(kCGWindowOwnerName = "\(precomposedAppName)" && kCGWindowName = "\(precomposedWindowTitle)")
 """
             )
         }
